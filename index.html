@@ -136,7 +136,6 @@ h2.sh .r{color:var(--R)}
 @media(max-width:600px){.pj-grid{grid-template-columns:1fr}}
 .pcard{height:600px;perspective:1000px}
 .pcard-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
-.pcard.flipped .pcard-inner{transform:rotateY(180deg)}
 .pcard-front,.pcard-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden}
 .pcard-front{background:#fff;display:flex;flex-direction:column}
 .pcard-imgs{position:relative;height:25rem;flex-shrink:0;overflow:hidden}
@@ -158,14 +157,6 @@ h2.sh .r{color:var(--R)}
 .btn-info:hover{background:#333}
 .btn-3d{background:#dc2626;color:#fff;padding:.5rem 1rem;font-size:.78rem;border:none;border-radius:6px;cursor:pointer;transition:background .2s}
 .btn-3d:hover{background:#b91c1c}
-.pcard-back{background:#fff;transform:rotateY(180deg);display:flex;flex-direction:column;position:relative}
-.pcard-back-content{padding:1.5rem;flex:1;overflow:hidden;display:flex;flex-direction:column}
-.pcard-back-title{font-size:1.2rem;font-weight:700;color:#111;margin-bottom:1rem}
-.pcard-service-desc{font-size:.85rem;color:#444;white-space:pre-line;line-height:1.65;flex:1;overflow-y:auto}
-.pcard-iframe-wrap{width:100%;flex:1}
-.pcard-iframe{width:100%;height:100%;border:none}
-.pcard-back-btn{position:absolute;bottom:1rem;right:1rem;background:#dc2626;color:#fff;padding:.5rem 1rem;font-size:.78rem;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:background .2s;z-index:10}
-.pcard-back-btn:hover{background:#b91c1c}
 .ag-bg{position:relative;overflow:hidden;background:var(--K2)}
 .ag-bg::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=70');background-size:cover;background-position:center top;filter:brightness(.07) saturate(.2)}
 .ag-bg>*{position:relative;z-index:1}
@@ -606,7 +597,6 @@ function renderPJ(){
     // DORSO: descripción o iframe A360 (misma lógica que ProjectCard.tsx)
     const back=(!has3d||!st.showModel)
       ?`<div class="pcard-back-content"><h3 class="pcard-back-title">${p.title}</h3><p class="pcard-service-desc">${p.serviceDescription||'Servicio no disponible.'}</p></div>`
-      :`<div class="pcard-iframe-wrap"><iframe src="${p.a360Link}" class="pcard-iframe" allow="fullscreen; accelerometer; autoplay; camera; gyroscope; microphone; xr-spatial-tracking" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups allow-forms" title="${p.title}"></iframe></div>`;
     return `<div class="pcard ${st.isFlipped?'flipped':''}" id="pc-${i}">
       <div class="pcard-inner">
         <div class="pcard-front">
@@ -620,7 +610,6 @@ function renderPJ(){
         </div>
         <div class="pcard-back">
           ${back}
-          <button class="pcard-back-btn" onclick="flipBack(${i},event)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9l-6 6"/><path d="M9 9h5v5"/></svg><span>Volver a Descripción</span></button>
         </div>
       </div>
     </div>`;
