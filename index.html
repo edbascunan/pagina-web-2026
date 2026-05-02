@@ -111,7 +111,29 @@ h2.sh .r{color:var(--R)}
 .pj-count{font-family:var(--M);font-size:.56rem;color:var(--W3);letter-spacing:.15em;margin-left:auto}
 .fb-f{background:transparent;border:1px solid rgba(240,235,227,.09);color:var(--W2);padding:.3rem .9rem;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(--M);cursor:pointer;transition:all .22s}
 .fb-f:hover,.fb-f.on{border-color:var(--R);color:var(--W);background:rgba(192,32,30,.07)}
-.pj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.pj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.pcard{cursor:pointer;border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;background:#fff}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.18)}
+.pcard.active-card{box-shadow:0 0 0 3px #dc2626;transform:translateY(-2px)}
+.pj-panel{grid-column:1/-1;background:#fff;border-radius:12px;overflow:hidden;display:none;margin-top:.5rem}
+.pj-panel.open{display:block;animation:panelIn .3s ease}
+@keyframes panelIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.pj-panel-inner{display:grid;grid-template-columns:340px 1fr;min-height:520px}
+.pj-panel-info{padding:2rem;background:#fff;display:flex;flex-direction:column;gap:.9rem;overflow-y:auto;border-right:1px solid #f0f0f0}
+.pj-panel-cat{font-size:.7rem;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.12em}
+.pj-panel-title{font-size:1.35rem;font-weight:800;color:#111;line-height:1.25}
+.pj-panel-desc{font-size:.85rem;color:#444;line-height:1.78;white-space:pre-line;flex:1}
+.pj-panel-meta{font-size:.8rem;color:#777;display:flex;flex-direction:column;gap:.3rem}
+.pj-panel-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.pj-panel-btns{display:flex;gap:.6rem;margin-top:.5rem;flex-wrap:wrap}
+.pj-panel-close{background:#111;color:#fff;border:none;padding:.6rem 1.2rem;font-size:.78rem;border-radius:6px;cursor:pointer}
+.pj-panel-close:hover{background:#444}
+.pj-panel-viewer{position:relative;background:#1a1a1a;overflow:hidden}
+.pj-panel-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.pj-panel-no3d{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:1rem;padding:3rem;text-align:center}
+.pj-panel-no3d p{color:#888;font-size:.88rem;max-width:320px;line-height:1.6}
+@media(max-width:1100px){.pj-grid{grid-template-columns:1fr 1fr}.pj-panel-inner{grid-template-columns:1fr;min-height:auto}.pj-panel-viewer{height:350px;position:relative}}
+@media(max-width:600px){.pj-grid{grid-template-columns:1fr}}
 .pcard{height:600px;perspective:1000px}
 .pcard-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
 .pcard.flipped .pcard-inner{transform:rotateY(180deg)}
@@ -332,7 +354,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 <section class="sec pj-bg" id="proyectos">
   <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="esi on">Historial real de trabajos</span><span class="eni">Real work portfolio</span></span></div>
   <h2 class="sh"><span class="es on">PROYEC<span class="r">TOS</span></span><span class="en">PROJ<span class="r">ECTS</span></span></h2>
-  <p class="intro"><span class="es on">Haz clic en <strong style="color:var(--W)">"Ver Servicio"</strong> para la descripción. Clic en el botón <strong style="color:#dc2626">rojo</strong> para ver el modelo 3D navegable en Autodesk A360.</span><span class="en">Click <strong style="color:var(--W)">"Ver Servicio"</strong> for description. Click the <strong style="color:#dc2626">red button</strong> to view the 3D model in Autodesk A360.</span></p>
+  <p class="intro"><span class="es on">Haz clic en el botón <strong style="color:#dc2626">rojo</strong> para abrir el modelo 3D navegable en Autodesk A360, o en <strong style="color:var(--W)">"Ver Servicio"</strong> para la descripción completa. El visor se abre debajo de la fila.</span><span class="en">Click the <strong style="color:#dc2626">red button</strong> to open the 3D model in Autodesk A360, or <strong style="color:var(--W)">"Ver Servicio"</strong> for the full description. The viewer opens below the row.</span></p>
   <div class="pj-bar">
     <button class="fb-f on" onclick="filterPJ(this,'all')"><span class="esi on">TODOS</span><span class="eni">ALL</span></button>
     <button class="fb-f" onclick="filterPJ(this,'Obras Civiles')"><span class="esi on">OBRAS CIVILES</span><span class="eni">CIVIL</span></button>
@@ -441,6 +463,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 
 <script>
 const SCRIPT='https://script.google.com/macros/s/AKfycbw4CXSjTRlXAQOm8lNJMuuCGxbJ1Uqq2fRMlJS5dSqriyFNM-LV4laLdBxXT9EUvIRM/exec';
+const N8N='https://edbascunan.app.n8n.cloud/webhook/ebf-contacto';
 const PJS=[
   {cat:'Obras Civiles',title:'Urbanización Antupiren',description:'Elaboración de presupuesto objetivo, cubicaciones, cotizaciones, programación de obra y control de recursos. Jefe de Oficina Técnica.',images:['https://i.postimg.cc/jqXrHYr3/Antu1.png','https://i.postimg.cc/XYTMjVwq/Antu2.png','https://i.postimg.cc/J7cPt1W0/Antu3.png'],a360Link:'default',serviceDescription:'Servicios integrales de gestión de proyectos:\n\n• Cubicaciones detalladas de materiales\n• Cotizaciones y Análisis de Precios Unitarios\n• Elaboración de presupuestos\n• Análisis de gastos generales\n• Programación, Control y seguimiento de obra',services:['Cubicaciones','Presupuestos'],client:'Constructora Antupiren',date:'2023',location:'Santiago, Chile'},
   {cat:'Obras Civiles',title:'Urbanización El Peñón M6',description:'Elaboración de presupuesto objetivo, cubicaciones, cotizaciones, programación de obra y control de recursos. Jefe de Oficina Técnica.',images:['https://i.postimg.cc/Jhc6BJyy/M61.png','https://i.postimg.cc/brM3j955/M62.png','https://i.postimg.cc/jqk8NRjh/M63.png'],a360Link:'default',serviceDescription:'Servicios integrales de gestión de proyectos:\n\n• Cubicaciones detalladas de materiales\n• Cotizaciones y Análisis de Precios Unitarios\n• Elaboración de presupuestos\n• Análisis de gastos generales\n• Programación, Control y seguimiento de obra',services:['Cubicaciones','Presupuestos'],client:'Constructora El Peñón',date:'2023',location:'Santiago, Chile'},
@@ -462,9 +485,109 @@ const PJS=[
 let LANG='es', CUR_F='all', SEL_SLOT=null;
 const ST={};// estado por tarjeta: {isFlipped, showModel, currentSlide}
 
-function getState(i){if(!ST[i])ST[i]={isFlipped:false,showModel:false,currentSlide:0};return ST[i];}
+function getState(i){if(!ST[i])ST[i]={currentSlide:0};return ST[i];}
 
-function filterPJ(btn,cat){CUR_F=cat;document.querySelectorAll('.fb-f').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderPJ();}
+function filterPJ(btn,cat){CUR_F=cat;document.querySelectorAll('.fb-f').forEach(b=>b.classList.remove('on'));btn.classList.add('on');ACTIVE_PJ=null;renderPJ();}
+
+
+function buildPanel(ap){
+  const show3d = ACTIVE_MODE==='3d' && ap.a360Link && ap.a360Link!=='default';
+  const toggleLabel = show3d ? 'Ver Descripción' : 'Ver Modelo 3D';
+  const toggleMode  = show3d ? 'info' : '3d';
+  const has3d = ap.a360Link && ap.a360Link !== 'default';
+  let viewer;
+  if(show3d){
+    viewer = '<div class="pj-panel-viewer">' +
+      '<iframe src="' + ap.a360Link + '" allow="fullscreen;accelerometer;autoplay;camera;gyroscope;microphone;xr-spatial-tracking" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>' +
+      '</div>';
+  } else {
+    const extraBtn = has3d
+      ? '<button class="btn-3d" onclick="openPanel(' + ACTIVE_PJ + ',\'3d\',event)" style="margin-top:.5rem">Ver Modelo 3D en A360</button>'
+      : '';
+    viewer = '<div class="pj-panel-viewer"><div class="pj-panel-no3d"><p style="font-size:2.5rem">📋</p><p>' + (ap.serviceDescription || ap.description) + '</p>' + extraBtn + '</div></div>';
+  }
+  const toggleBtn = has3d
+    ? '<button class="btn-3d" onclick="openPanel(' + ACTIVE_PJ + ',\'' + toggleMode + '\',event)">' + toggleLabel + '</button>'
+    : '';
+  return '<div class="pj-panel open">' +
+    '<div class="pj-panel-inner">' +
+      '<div class="pj-panel-info">' +
+        '<div class="pj-panel-cat">' + ap.cat + ' · ' + ap.date + ' · ' + ap.location + '</div>' +
+        '<div class="pj-panel-title">' + ap.title + '</div>' +
+        '<div class="pj-panel-desc">' + (ap.serviceDescription || ap.description) + '</div>' +
+        '<div class="pj-panel-tags">' + ap.services.map(function(s){return '<span class="pcard-tag">'+s+'</span>';}).join('') + '</div>' +
+        '<div class="pj-panel-meta"><span><strong>Cliente:</strong> ' + ap.client + '</span></div>' +
+        '<div class="pj-panel-btns">' + toggleBtn + '<button class="pj-panel-close" onclick="closePanel(event)">✕ Cerrar</button></div>' +
+      '</div>' +
+      viewer +
+    '</div>' +
+  '</div>';
+}
+
+function renderPJnew(){
+  const g = document.getElementById('pjGrid');
+  const list = CUR_F==='all' ? PJS : PJS.filter(function(p){return p.cat===CUR_F;});
+  document.getElementById('pjCount').textContent = list.length + ' ' + (LANG==='es' ? 'proyectos' : 'projects');
+  const cols = window.innerWidth > 1100 ? 3 : window.innerWidth > 600 ? 2 : 1;
+  let out = '';
+  list.forEach(function(p, li){
+    const gi = PJS.indexOf(p);
+    const st = getState(gi);
+    const has3d = p.a360Link && p.a360Link !== 'default';
+    const isAct = ACTIVE_PJ === gi;
+    const imgs = p.images.map(function(img,n){
+      return '<div class="pcard-img ' + (n===st.currentSlide?'active':'inactive') + '"><img src="' + img.trim() + '" alt="' + p.title + '" loading="lazy" onerror="this.parentElement.style.background=\'#f3f4f6\'"></div>';
+    }).join('');
+    const nav = p.images.length > 1
+      ? '<div class="pcard-nav"><button class="pcard-nav-btn" onclick="prevSlide('+gi+',event)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button><button class="pcard-nav-btn" onclick="nextSlide('+gi+',event)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button></div>'
+      : '';
+    const tags = p.services.map(function(s){return '<span class="pcard-tag">'+s+'</span>';}).join('');
+    const btns = has3d
+      ? '<div class="pcard-btns"><button class="btn-info" onclick="openPanel('+gi+',\'info\',event)">Ver Servicio</button><button class="btn-3d" onclick="openPanel('+gi+',\'3d\',event)">Ver Modelo 3D</button></div>'
+      : '<div class="pcard-btns"><button class="btn-info" onclick="openPanel('+gi+',\'info\',event)">Ver Servicio</button></div>';
+
+    out += '<div class="pcard ' + (isAct?'active-card':'') + '" id="pc-' + gi + '">' +
+      '<div class="pcard-front">' +
+        '<div class="pcard-imgs">' + imgs + nav + '</div>' +
+        '<div class="pcard-info">' +
+          '<div class="pcard-title">' + p.title + '</div>' +
+          '<div class="pcard-desc">' + p.description + '</div>' +
+          '<div class="pcard-tags">' + tags + '</div>' +
+          '<div class="pcard-details">' +
+            '<span><strong>Cliente:</strong> ' + p.client + '</span>' +
+            '<span><strong>Fecha:</strong> ' + p.date + '</span>' +
+            '<span><strong>Ubicación:</strong> ' + p.location + '</span>' +
+          '</div>' +
+        '</div>' + btns +
+      '</div>' +
+    '</div>';
+
+    // Panel al final de cada fila
+    const isEndOfRow = (li+1) % cols === 0 || li === list.length-1;
+    if(isEndOfRow && ACTIVE_PJ !== null){
+      const rowStart = Math.floor(li/cols)*cols;
+      const rowItems = list.slice(rowStart, li+1);
+      const actInRow = rowItems.some(function(rp){return PJS.indexOf(rp)===ACTIVE_PJ;});
+      if(actInRow) out += buildPanel(PJS[ACTIVE_PJ]);
+    }
+  });
+  g.innerHTML = out;
+
+  if(ACTIVE_PJ !== null){
+    setTimeout(function(){
+      var el = document.querySelector('.pj-panel.open');
+      if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }, 150);
+  }
+}
+
+function openPanel(i, mode, e){
+  if(e) e.stopPropagation();
+  if(ACTIVE_PJ===i && ACTIVE_MODE===mode){ closePanel(e); return; }
+  ACTIVE_PJ = i; ACTIVE_MODE = mode;
+  renderPJnew();
+}
+function closePanel(e){ if(e) e.stopPropagation(); ACTIVE_PJ=null; renderPJnew(); }
 
 function renderPJ(){
   const g=document.getElementById('pjGrid');
@@ -507,8 +630,8 @@ function renderPJ(){
 function showService(i,e){e&&e.stopPropagation();const s=getState(i);s.isFlipped=true;s.showModel=false;renderPJ();}
 function showModel3D(i,e){e&&e.stopPropagation();const s=getState(i);s.isFlipped=true;s.showModel=true;renderPJ();}
 function flipBack(i,e){e&&e.stopPropagation();getState(i).isFlipped=false;renderPJ();}
-function nextSlide(i,e){e&&e.stopPropagation();const s=getState(i);s.currentSlide=(s.currentSlide+1)%PJS[i].images.length;renderPJ();}
-function prevSlide(i,e){e&&e.stopPropagation();const s=getState(i);s.currentSlide=(s.currentSlide-1+PJS[i].images.length)%PJS[i].images.length;renderPJ();}
+function nextSlide(i,e){e&&e.stopPropagation();const s=getState(i);s.currentSlide=(s.currentSlide+1)%PJS[i].images.length;renderPJnew();}
+function prevSlide(i,e){e&&e.stopPropagation();const s=getState(i);s.currentSlide=(s.currentSlide-1+PJS[i].images.length)%PJS[i].images.length;renderPJnew();}
 
 function renderSlots(){
   const c=document.getElementById('calSlots');if(!c)return;
@@ -536,7 +659,8 @@ async function sendForm(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){st.className='fst err';st.textContent='⚠ '+(es?'Correo electrónico inválido.':'Invalid email address.');return;}
   btn.disabled=true;btn.textContent=es?'ENVIANDO...':'SENDING...';st.className='fst';st.style.display='none';
   try{await fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'})})});
-  st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong> Registrada en Google Sheets. Te contactamos en &lt;24 hrs.':'<strong>Inquiry sent!</strong> Logged in Google Sheets. We\'ll contact you within 24 hours.');
+  st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong> Recibirás confirmación por email. Te contactamos en &lt;24 hrs.':'<strong>Inquiry sent!</strong> You will receive a confirmation email within 24 hours.');
+  try{fetch(N8N,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'})})});}catch(ex){}
   ['fn','fe','fp','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('fv').value='';
   }catch{st.className='fst err';st.textContent='⚠ '+(es?'Error al enviar. Escríbenos a contacto@ebfservicios.cl o por WhatsApp.':'Send error. Contact us at contacto@ebfservicios.cl or via WhatsApp.');}
   finally{btn.disabled=false;btn.innerHTML=es?'ENVIAR CONSULTA →':'SEND INQUIRY →';}
@@ -544,7 +668,7 @@ async function sendForm(){
 
 function toggleWA(){const p=document.getElementById('waPop');p.classList.toggle('open');if(p.classList.contains('open'))document.querySelector('.wa-notif').style.display='none';}
 function animCounters(){document.querySelectorAll('[data-count]').forEach(el=>{const t=+el.dataset.count;let c=0;const iv=setInterval(()=>{c=Math.min(c+1,t);el.textContent=c+(c===t?'+':'');if(c>=t)clearInterval(iv);},50);});}
-function setLang(l){LANG=l;document.querySelectorAll('.es,.en').forEach(e=>e.classList.toggle('on',e.classList.contains(l)));document.querySelectorAll('.esi,.eni').forEach(e=>e.classList.toggle('on',e.classList.contains(l+'i')));document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));renderPJ();}
+function setLang(l){LANG=l;document.querySelectorAll('.es,.en').forEach(e=>e.classList.toggle('on',e.classList.contains(l)));document.querySelectorAll('.esi,.eni').forEach(e=>e.classList.toggle('on',e.classList.contains(l+'i')));document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));renderPJnew();}
 function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
 
 // INIT
