@@ -455,6 +455,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 <script>
 const SCRIPT='https://script.google.com/macros/s/AKfycbw4CXSjTRlXAQOm8lNJMuuCGxbJ1Uqq2fRMlJS5dSqriyFNM-LV4laLdBxXT9EUvIRM/exec';
 const N8N='https://edbascunan.app.n8n.cloud/webhook/ebf-contacto';
+const N8N='https://edbascunan.app.n8n.cloud/webhook/ebf-contacto';
 const PJS=[
   {cat:'Obras Civiles',title:'Urbanización Antupiren',description:'Elaboración de presupuesto objetivo, cubicaciones, cotizaciones, programación de obra y control de recursos. Jefe de Oficina Técnica.',images:['https://i.postimg.cc/jqXrHYr3/Antu1.png','https://i.postimg.cc/XYTMjVwq/Antu2.png','https://i.postimg.cc/J7cPt1W0/Antu3.png'],a360Link:'default',serviceDescription:'Servicios integrales de gestión de proyectos:\n\n• Cubicaciones detalladas de materiales\n• Cotizaciones y Análisis de Precios Unitarios\n• Elaboración de presupuestos\n• Análisis de gastos generales\n• Programación, Control y seguimiento de obra',services:['Cubicaciones','Presupuestos'],client:'Constructora Antupiren',date:'2023',location:'Santiago, Chile'},
   {cat:'Obras Civiles',title:'Urbanización El Peñón M6',description:'Elaboración de presupuesto objetivo, cubicaciones, cotizaciones, programación de obra y control de recursos. Jefe de Oficina Técnica.',images:['https://i.postimg.cc/Jhc6BJyy/M61.png','https://i.postimg.cc/brM3j955/M62.png','https://i.postimg.cc/jqk8NRjh/M63.png'],a360Link:'default',serviceDescription:'Servicios integrales de gestión de proyectos:\n\n• Cubicaciones detalladas de materiales\n• Cotizaciones y Análisis de Precios Unitarios\n• Elaboración de presupuestos\n• Análisis de gastos generales\n• Programación, Control y seguimiento de obra',services:['Cubicaciones','Presupuestos'],client:'Constructora El Peñón',date:'2023',location:'Santiago, Chile'},
@@ -479,6 +480,106 @@ const ST={};// estado por tarjeta: {isFlipped, showModel, currentSlide}
 function getState(i){if(!ST[i])ST[i]={currentSlide:0};return ST[i];}
 
 function filterPJ(btn,cat){CUR_F=cat;document.querySelectorAll('.fb-f').forEach(b=>b.classList.remove('on'));btn.classList.add('on');ACTIVE_PJ=null;renderPJ();}
+
+
+function buildPanel(ap){
+  const show3d = ACTIVE_MODE==='3d' && ap.a360Link && ap.a360Link!=='default';
+  const toggleLabel = show3d ? 'Ver Descripción' : 'Ver Modelo 3D';
+  const toggleMode  = show3d ? 'info' : '3d';
+  const has3d = ap.a360Link && ap.a360Link !== 'default';
+  let viewer;
+  if(show3d){
+    viewer = '<div class="pj-panel-viewer">' +
+      '<iframe src="' + ap.a360Link + '" allow="fullscreen;accelerometer;autoplay;camera;gyroscope;microphone;xr-spatial-tracking" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>' +
+      '</div>';
+  } else {
+    const extraBtn = has3d
+      ? '<button class="btn-3d" onclick="openPanel(' + ACTIVE_PJ + ',\'3d\',event)" style="margin-top:.5rem">Ver Modelo 3D en A360</button>'
+      : '';
+    viewer = '<div class="pj-panel-viewer"><div class="pj-panel-no3d"><p style="font-size:2.5rem">📋</p><p>' + (ap.serviceDescription || ap.description) + '</p>' + extraBtn + '</div></div>';
+  }
+  const toggleBtn = has3d
+    ? '<button class="btn-3d" onclick="openPanel(' + ACTIVE_PJ + ',\'' + toggleMode + '\',event)">' + toggleLabel + '</button>'
+    : '';
+  return '<div class="pj-panel open">' +
+    '<div class="pj-panel-inner">' +
+      '<div class="pj-panel-info">' +
+        '<div class="pj-panel-cat">' + ap.cat + ' · ' + ap.date + ' · ' + ap.location + '</div>' +
+        '<div class="pj-panel-title">' + ap.title + '</div>' +
+        '<div class="pj-panel-desc">' + (ap.serviceDescription || ap.description) + '</div>' +
+        '<div class="pj-panel-tags">' + ap.services.map(function(s){return '<span class="pcard-tag">'+s+'</span>';}).join('') + '</div>' +
+        '<div class="pj-panel-meta"><span><strong>Cliente:</strong> ' + ap.client + '</span></div>' +
+        '<div class="pj-panel-btns">' + toggleBtn + '<button class="pj-panel-close" onclick="closePanel(event)">✕ Cerrar</button></div>' +
+      '</div>' +
+      viewer +
+    '</div>' +
+  '</div>';
+}
+
+function renderPJnew(){
+  const g = document.getElementById('pjGrid');
+  const list = CUR_F==='all' ? PJS : PJS.filter(function(p){return p.cat===CUR_F;});
+  document.getElementById('pjCount').textContent = list.length + ' ' + (LANG==='es' ? 'proyectos' : 'projects');
+  const cols = window.innerWidth > 1100 ? 3 : window.innerWidth > 600 ? 2 : 1;
+  let out = '';
+  list.forEach(function(p, li){
+    const gi = PJS.indexOf(p);
+    const st = getState(gi);
+    const has3d = p.a360Link && p.a360Link !== 'default';
+    const isAct = ACTIVE_PJ === gi;
+    const imgs = p.images.map(function(img,n){
+      return '<div class="pcard-img ' + (n===st.currentSlide?'active':'inactive') + '"><img src="' + img.trim() + '" alt="' + p.title + '" loading="lazy" onerror="this.parentElement.style.background=\'#f3f4f6\'"></div>';
+    }).join('');
+    const nav = p.images.length > 1
+      ? '<div class="pcard-nav"><button class="pcard-nav-btn" onclick="prevSlide('+gi+',event)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button><button class="pcard-nav-btn" onclick="nextSlide('+gi+',event)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button></div>'
+      : '';
+    const tags = p.services.map(function(s){return '<span class="pcard-tag">'+s+'</span>';}).join('');
+    const btns = has3d
+      ? '<div class="pcard-btns"><button class="btn-info" onclick="openPanel('+gi+',\'info\',event)">Ver Servicio</button><button class="btn-3d" onclick="openPanel('+gi+',\'3d\',event)">Ver Modelo 3D</button></div>'
+      : '<div class="pcard-btns"><button class="btn-info" onclick="openPanel('+gi+',\'info\',event)">Ver Servicio</button></div>';
+
+    out += '<div class="pcard ' + (isAct?'active-card':'') + '" id="pc-' + gi + '">' +
+      '<div class="pcard-front">' +
+        '<div class="pcard-imgs">' + imgs + nav + '</div>' +
+        '<div class="pcard-info">' +
+          '<div class="pcard-title">' + p.title + '</div>' +
+          '<div class="pcard-desc">' + p.description + '</div>' +
+          '<div class="pcard-tags">' + tags + '</div>' +
+          '<div class="pcard-details">' +
+            '<span><strong>Cliente:</strong> ' + p.client + '</span>' +
+            '<span><strong>Fecha:</strong> ' + p.date + '</span>' +
+            '<span><strong>Ubicación:</strong> ' + p.location + '</span>' +
+          '</div>' +
+        '</div>' + btns +
+      '</div>' +
+    '</div>';
+
+    // Panel al final de cada fila
+    const isEndOfRow = (li+1) % cols === 0 || li === list.length-1;
+    if(isEndOfRow && ACTIVE_PJ !== null){
+      const rowStart = Math.floor(li/cols)*cols;
+      const rowItems = list.slice(rowStart, li+1);
+      const actInRow = rowItems.some(function(rp){return PJS.indexOf(rp)===ACTIVE_PJ;});
+      if(actInRow) out += buildPanel(PJS[ACTIVE_PJ]);
+    }
+  });
+  g.innerHTML = out;
+
+  if(ACTIVE_PJ !== null){
+    setTimeout(function(){
+      var el = document.querySelector('.pj-panel.open');
+      if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }, 150);
+  }
+}
+
+function openPanel(i, mode, e){
+  if(e) e.stopPropagation();
+  if(ACTIVE_PJ===i && ACTIVE_MODE===mode){ closePanel(e); return; }
+  ACTIVE_PJ = i; ACTIVE_MODE = mode;
+  renderPJnew();
+}
+function closePanel(e){ if(e) e.stopPropagation(); ACTIVE_PJ=null; renderPJnew(); }
 
 
 function buildPanel(ap){
