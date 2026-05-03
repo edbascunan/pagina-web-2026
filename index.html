@@ -474,7 +474,7 @@ const PJS=[
   {cat:'Infraestructura',title:'Estaciones de Servicio',description:'Modelado BIM completo de arquitectura, sanitario, piping, climatización y eléctrico.',images:['https://i.postimg.cc/fRs73fFY/382FA938-119F-4131-8675-94071B0EDC70.png','https://i.postimg.cc/3xVSnFSx/6FB00799-4BDD-4A94-A538-EB4C46B2A675.png','https://i.postimg.cc/3JC3RwxC/1-EDS-Arq.jpg','https://i.postimg.cc/qMdk4K4v/1-EDS-EST1.jpg','https://i.postimg.cc/rpzTQCCQ/2-EDS-SANITARIOS.jpg','https://i.postimg.cc/2SkrBfqp/3-PIPING.jpg'],a360Link:'https://a360.co/438pQHx',serviceDescription:'Modelado BIM completo:\n\n• Arquitectura, sanitario, piping\n• Climatización y eléctrico\n• Coordinación de especialidades\n• Detección de interferencias',services:['Modelo 3D','Coordinación BIM'],client:'Varios',date:'2023',location:'Chile'},
 ];
 
-let LANG='es', CUR_F='all', SEL_SLOT=null;
+let LANG='es', CUR_F='all', SEL_SLOT=null, ACTIVE_PJ=null, ACTIVE_MODE='info';
 const ST={};// estado por tarjeta: {isFlipped, showModel, currentSlide}
 
 function getState(i){if(!ST[i])ST[i]={currentSlide:0};return ST[i];}
