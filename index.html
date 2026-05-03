@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="build-time" content="2026-05-03 04:34">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%23dc2626%22/><text x=%2216%22 y=%2223%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22 font-weight=%22bold%22 font-size=%2218%22>E</text></svg>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EBF Servicios · Arquitectura BIM · Chile</title>
 <meta name="description" content="Modelado BIM LOD 400, coordinación multidisciplinaria y gestión de proyectos en Chile.">
@@ -602,7 +603,7 @@ async function bookMeeting(){
   const msg=document.getElementById('calMsg'),es=LANG==='es';
   if(!n||!em||!SEL_SLOT||!t){msg.style.color='#dc2626';msg.textContent='⚠ '+(es?'Selecciona horario y completa tus datos.':'Select a slot and fill your details.');return;}
   msg.style.color='#888';msg.textContent=es?'Enviando...':'Sending...';
-  try{await fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre:n,correo:em,telefono:'—',servicio:'REUNIÓN BIM: '+t,consulta:'Horario: '+SEL_SLOT,fecha:new Date().toLocaleString('es-CL')})});
+  try{await fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({nombre:n,correo:em,telefono:'—',servicio:'REUNIÓN BIM: '+t,consulta:'Horario: '+SEL_SLOT,fecha:new Date().toLocaleString('es-CL')})});
   msg.style.color='#16a34a';msg.textContent='✓ '+(es?'¡Reunión agendada! Te confirmamos en 1 hora.':'Meeting booked! We\'ll confirm within 1 hour.');
   document.getElementById('calName').value='';document.getElementById('calEmail').value='';document.getElementById('calType').value='';SEL_SLOT=null;document.querySelectorAll('.slot').forEach(s=>s.classList.remove('on'));
   }catch{msg.style.color='#dc2626';msg.textContent='⚠ '+(es?'Error. Contáctanos por WhatsApp.':'Error. Contact us via WhatsApp.');}
@@ -614,9 +615,9 @@ async function sendForm(){
   if(!n||!em||!msg||!sv){st.className='fst err';st.textContent='⚠ '+(es?'Completa todos los campos marcados con *.':'Fill all required fields.');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){st.className='fst err';st.textContent='⚠ '+(es?'Correo electrónico inválido.':'Invalid email address.');return;}
   btn.disabled=true;btn.textContent=es?'ENVIANDO...':'SENDING...';st.className='fst';st.style.display='none';
-  try{await fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'})})});
+  try{await fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'})})});
   st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong> Recibirás confirmación por email. Te contactamos en &lt;24 hrs.':'<strong>Inquiry sent!</strong> You will receive a confirmation email within 24 hours.');
-  try{fetch(N8N,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'})})});}catch(ex){}
+  setTimeout(()=>{try{fetch(N8N,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'})})});}catch(ex){}},500);
   ['fn','fe','fp','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('fv').value='';
   }catch{st.className='fst err';st.textContent='⚠ '+(es?'Error al enviar. Escríbenos a contacto@ebfservicios.cl o por WhatsApp.':'Send error. Contact us at contacto@ebfservicios.cl or via WhatsApp.');}
   finally{btn.disabled=false;btn.innerHTML=es?'ENVIAR CONSULTA →':'SEND INQUIRY →';}
