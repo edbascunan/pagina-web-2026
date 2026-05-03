@@ -604,7 +604,7 @@ async function bookMeeting(){
   if(!n||!em||!SEL_SLOT||!t){msg.style.color='#dc2626';msg.textContent='⚠ '+(es?'Selecciona horario y completa tus datos.':'Select a slot and fill your details.');return;}
   msg.style.color='#888';msg.textContent=es?'Enviando...':'Sending...';
   try{await fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({nombre:n,correo:em,telefono:'—',servicio:'REUNIÓN BIM: '+t,consulta:'Horario: '+SEL_SLOT,fecha:new Date().toLocaleString('es-CL')})});
-  msg.style.color='#16a34a';msg.textContent='✓ '+(es?'¡Reunión agendada! Te confirmamos en 1 hora.':'Meeting booked! We\'ll confirm within 1 hour.');
+  msg.style.color='#16a34a';msg.textContent='✓ '+(es?'¡Reunión agendada! Te confirmamos en 1 hora.':'Meeting booked! We will confirm within 1 hour.');
   document.getElementById('calName').value='';document.getElementById('calEmail').value='';document.getElementById('calType').value='';SEL_SLOT=null;document.querySelectorAll('.slot').forEach(s=>s.classList.remove('on'));
   }catch{msg.style.color='#dc2626';msg.textContent='⚠ '+(es?'Error. Contáctanos por WhatsApp.':'Error. Contact us via WhatsApp.');}
 }
