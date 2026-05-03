@@ -591,24 +591,73 @@ function nextSlide(i,e){e&&e.stopPropagation();const s=getState(i);s.currentSlid
 function prevSlide(i,e){e&&e.stopPropagation();const s=getState(i);s.currentSlide=(s.currentSlide-1+PJS[i].images.length)%PJS[i].images.length;renderPJnew();}
 
 function renderSlots(){
-  const c=document.getElementById('calSlots');if(!c)return;
-  const days=['Lun','Mar','Mié','Jue','Vie'],times=['09:00','10:00','11:00','14:00','15:00','16:00'];
-  const today=new Date(),slots=[];
-  for(let i=1;slots.length<4&&i<14;i++){const d=new Date(today);d.setDate(d.getDate()+i);if(d.getDay()===0||d.getDay()===6)continue;slots.push({label:`${days[d.getDay()-1]} ${d.getDate()}/${d.getMonth()+1}`,time:times[Math.floor(Math.random()*times.length)]});}
-  slots.forEach(s=>{const el=document.createElement('div');el.className='slot';el.innerHTML=`<div class="slot-t">${s.label}<br>${s.time}</div><div class="slot-a">✓ Disponible</div>`;el.onclick=()=>{document.querySelectorAll('.slot').forEach(x=>x.classList.remove('on'));el.classList.add('on');SEL_SLOT=`${s.label} ${s.time}`;};c.appendChild(el);});
+  var c=document.getElementById('calSlots');if(!c)return;
+  var slots=[];
+  var now=new Date();
+  var minTime=new Date(now.getTime()+24*60*60*1000);
+  var dayNames=['dom','lun','mar','mie','jue','vie','sab'];
+  for(var week=0;week<8;week++){
+    [2,5].forEach(function(dow){
+      var base=new Date(now);
+      var diff=dow-base.getDay();
+      if(diff<=0)diff+=7;
+      base.setDate(base.getDate()+diff+week*7);
+      base.setHours(0,0,0,0);
+      for(var h=11;h<17;h++){
+        [0,30].forEach(function(m){
+          var s=new Date(base);
+          s.setHours(h,m,0,0);
+          if(s<=minTime)return;
+          var dd=String(s.getDate()).padStart(2,'0');
+          var mm=String(s.getMonth()+1).padStart(2,'0');
+          var hh=String(h).padStart(2,'0');
+          var mn=String(m).padStart(2,'0');
+          var dayLabel=dow===2?'Martes':'Viernes';
+          slots.push({label:dayLabel+' '+dd+'/'+mm,time:hh+':'+mn,iso:s.toISOString()});
+        });
+      }
+    });
+  }
+  if(!slots.length){c.innerHTML='<p style="color:#888;font-size:.7rem;grid-column:1/-1;text-align:center">Sin horarios disponibles.</p>';return;}
+  c.innerHTML='';
+  slots.slice(0,8).forEach(function(s){
+    var el=document.createElement('div');
+    el.className='slot';
+    el.innerHTML='<div class="slot-t">'+s.label+'<br>'+s.time+'</div><div class="slot-a">✓ Disponible</div>';
+    el.onclick=function(){
+      document.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on');});
+      el.classList.add('on');
+      SEL_SLOT=s.iso;
+      SEL_SLOT_LABEL=s.label+' '+s.time;
+    };
+    c.appendChild(el);
+  });
 }
-
 async function bookMeeting(){
-  const n=document.getElementById('calName').value.trim(),em=document.getElementById('calEmail').value.trim(),t=document.getElementById('calType').value;
-  const msg=document.getElementById('calMsg'),es=LANG==='es';
+  var n=document.getElementById('calName').value.trim();
+  var em=document.getElementById('calEmail').value.trim();
+  var t=document.getElementById('calType').value;
+  var msg=document.getElementById('calMsg');
+  var es=LANG==='es';
   if(!n||!em||!SEL_SLOT||!t){msg.style.color='#dc2626';msg.textContent='⚠ '+(es?'Selecciona horario y completa tus datos.':'Select a slot and fill your details.');return;}
   msg.style.color='#888';msg.textContent=es?'Enviando...':'Sending...';
-  try{await fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({nombre:n,correo:em,telefono:'—',servicio:'REUNIÓN BIM: '+t,consulta:'Horario: '+SEL_SLOT,fecha:new Date().toLocaleString('es-CL')})});
-  msg.style.color='#16a34a';msg.textContent='✓ '+(es?'¡Reunión agendada! Te confirmamos en 1 hora.':'Meeting booked! We will confirm within 1 hour.');
-  document.getElementById('calName').value='';document.getElementById('calEmail').value='';document.getElementById('calType').value='';SEL_SLOT=null;document.querySelectorAll('.slot').forEach(s=>s.classList.remove('on'));
-  }catch{msg.style.color='#dc2626';msg.textContent='⚠ '+(es?'Error. Contáctanos por WhatsApp.':'Error. Contact us via WhatsApp.');}
+  try{
+    await fetch('https://edbascunan.app.n8n.cloud/webhook/ebf-agenda-reserva',{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({nombre:n,correo:em,servicio:t,horario:SEL_SLOT,horario_label:SEL_SLOT_LABEL,fecha:new Date().toLocaleString('es-CL')})
+    });
+    msg.style.color='#16a34a';
+    msg.textContent='✓ '+(es?'Reunion agendada! Te confirmamos en 1 hora.':'Meeting booked! We will confirm within 1 hour.');
+    document.getElementById('calName').value='';
+    document.getElementById('calEmail').value='';
+    document.getElementById('calType').value='';
+    SEL_SLOT=null;SEL_SLOT_LABEL=null;
+    document.querySelectorAll('.slot').forEach(function(s){s.classList.remove('on');});
+    renderSlots();
+  }catch(e){msg.style.color='#dc2626';msg.textContent='⚠ '+(es?'Error. Contactanos por WhatsApp.':'Error. Contact us via WhatsApp.');}
 }
-
 async function sendForm(){
   const n=document.getElementById('fn').value.trim(),em=document.getElementById('fe').value.trim(),ph=document.getElementById('fp').value.trim(),sv=document.getElementById('fv').value,msg=document.getElementById('fm').value.trim();
   const st=document.getElementById('fst'),btn=document.getElementById('sbtn'),es=LANG==='es';
