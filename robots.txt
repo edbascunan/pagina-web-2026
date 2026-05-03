@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://edbascunan.github.io/pagina-web-2026/sitemap.xml
