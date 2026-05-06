@@ -2,7 +2,13 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-    <meta name="google-site-verification" content="wrmHt1IGXl0CQY2EDgTRNiMlyTBXXhNHbzPrS8C6MPs" /><meta name="build-time" content="2026-05-03 11:15:42">
+    <meta name="google-site-verification" content="wrmHt1IGXl0CQY2EDgTRNiMlyTBXXhNHbzPrS8C6MPs" /><meta name="build-time" content="2026-05-06 10:00:00">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PLACEHOLDER');</script>
+  <!-- og:image -->
+  <meta property="og:image" content="https://edbascunan.github.io/pagina-web-2026/og-image.jpg">
+  <meta name="twitter:image" content="https://edbascunan.github.io/pagina-web-2026/og-image.jpg">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%23dc2626%22/><text x=%2216%22 y=%2223%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22 font-weight=%22bold%22 font-size=%2218%22>E</text></svg>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EBF Servicios · Arquitectura BIM · Chile</title>
@@ -308,8 +314,19 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 .es,.en{display:none}.es.on,.en.on{display:block}
 .esi,.eni{display:none}.esi.on,.eni.on{display:inline}
 @media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-r{display:none}.hero-l{padding:8rem 2rem 5rem}.sv-layout{grid-template-columns:1fr}.sv-sticky{position:static}.ag-wrap,.ct-wrap,.wy-grid{grid-template-columns:1fr}.wy-visual{display:none}section.sec{padding:5rem 2rem}}
-@media(max-width:700px){nav{padding:.9rem 1.5rem}.nav-links{display:none}.pj-grid{grid-template-columns:1fr}.fr2,.slots{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}.flinks{justify-content:center;flex-wrap:wrap}}
+@media(max-width:700px){nav{padding:.9rem 1.5rem}.nav-links{display:none}.pj-grid{grid-template-columns:1fr}.fr2,.slots{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}.flinks{justify-content:center;flex-wrap:wrap}#testimonios [style*="grid-template-columns:repeat(3"],#blog-preview [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"¿Qué es el modelado BIM LOD 400?","acceptedAnswer":{"@type":"Answer","text":"El LOD 400 es el nivel de desarrollo máximo en BIM, con geometría, fabricación, ensamblaje e información de instalación completos. EBF Servicios entrega modelos LOD 400 con Revit para arquitectura, estructura y MEP."}},
+    {"@type":"Question","name":"¿Cuánto cuesta un presupuesto de licitación de obras en Chile?","acceptedAnswer":{"@type":"Answer","text":"El costo depende del tipo y tamaño de la obra. En EBF Servicios cotizamos sin costo inicial. La primera reunión es gratuita y presentamos propuesta en 48 horas."}},
+    {"@type":"Question","name":"¿Cuánto tarda una coordinación BIM multidisciplinaria?","acceptedAnswer":{"@type":"Answer","text":"El plazo varía según la complejidad del proyecto. En general, un informe de coordinación BIM con clash detection tarda entre 1 y 3 semanas para proyectos de mediana escala."}}
+  ]
+}
+</script>
 </head>
 <body>
 <nav id="mainNav">
@@ -318,7 +335,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
     <li><a onclick="go('servicios')"><span class="esi on">Servicios</span><span class="eni">Services</span></a></li>
     <li><a onclick="go('proyectos')"><span class="esi on">Proyectos</span><span class="eni">Projects</span></a></li>
     <li><a onclick="go('agendar')"><span class="esi on">Agendar</span><span class="eni">Schedule</span></a></li>
-    <li><a onclick="go('contacto')"><span class="esi on">Contacto</span><span class="eni">Contact</span></a><a href="blog/">Blog</a></li><li><a href="blog/">Blog</a></li>
+    <li><a onclick="go('contacto')"><span class="esi on">Contacto</span><span class="eni">Contact</span></a></li><li><a onclick="go('testimonios')"><span class="esi on">Testimonios</span><span class="eni">Testimonials</span></a></li><li><a href="blog/">Blog</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-toggle">
@@ -371,16 +388,16 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 <div class="cl-bg" id="clientes">
   <div class="cl-title"><span class="es on">EMPRESAS QUE CONFÍAN EN EBF SERVICIOS</span><span class="en">COMPANIES THAT TRUST EBF SERVICIOS</span></div>
   <div class="mq-wr"><div class="mq-track">
-    <img class="cl-img" src="https://i.postimg.cc/ZR1tbHTZ/Logo-Teyco.png" alt="Teyco">
-    <img class="cl-img" src="https://i.postimg.cc/ZR9zz2zV/Logo-Rene-Lagos.jpg" alt="Rene Lagos Engineers">
-    <img class="cl-img" src="https://i.postimg.cc/HLRPXLF9/Marthel.jpg" alt="Marthel">
-    <img class="cl-img" src="https://i.postimg.cc/qM1w2R36/Giaretti.png" alt="Giaretti">
-    <img class="cl-img" src="https://i.postimg.cc/DZKRpmp2/Copihues.jpg" alt="Copi&Hues">
-    <img class="cl-img" src="https://i.postimg.cc/ZR1tbHTZ/Logo-Teyco.png" alt="Teyco">
-    <img class="cl-img" src="https://i.postimg.cc/ZR9zz2zV/Logo-Rene-Lagos.jpg" alt="Rene Lagos Engineers">
-    <img class="cl-img" src="https://i.postimg.cc/HLRPXLF9/Marthel.jpg" alt="Marthel">
-    <img class="cl-img" src="https://i.postimg.cc/qM1w2R36/Giaretti.png" alt="Giaretti">
-    <img class="cl-img" src="https://i.postimg.cc/DZKRpmp2/Copihues.jpg" alt="Copi&Hues">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/ZR1tbHTZ/Logo-Teyco.png" alt="Teyco">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/ZR9zz2zV/Logo-Rene-Lagos.jpg" alt="Rene Lagos Engineers">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/HLRPXLF9/Marthel.jpg" alt="Marthel">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/qM1w2R36/Giaretti.png" alt="Giaretti">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/DZKRpmp2/Copihues.jpg" alt="Copi&Hues">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/ZR1tbHTZ/Logo-Teyco.png" alt="Teyco">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/ZR9zz2zV/Logo-Rene-Lagos.jpg" alt="Rene Lagos Engineers">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/HLRPXLF9/Marthel.jpg" alt="Marthel">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/qM1w2R36/Giaretti.png" alt="Giaretti">
+    <img loading="lazy" class="cl-img" src="https://i.postimg.cc/DZKRpmp2/Copihues.jpg" alt="Copi&Hues">
   </div></div>
 </div>
 
@@ -502,13 +519,66 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   <div class="fc2">© 2026 EBF SERVICIOS · SANTIAGO, CHILE</div>
 </footer>
 
+<!-- TESTIMONIOS -->
+<section class="sec" id="testimonios" style="background:var(--K2);border-top:1px solid rgba(192,32,30,.07)">
+  <div class="stag"><div class="stag-l"></div><span class="stag-t">Lo que dicen nuestros clientes</span></div>
+  <h2 class="sh">TESTIMONIOS</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem">
+    <div style="background:rgba(17,17,17,.96);border:1px solid rgba(192,32,30,.15);padding:2rem;position:relative">
+      <div style="font-family:var(--F);font-size:3rem;color:var(--R);line-height:1;margin-bottom:.8rem">"</div>
+      <p style="font-size:.88rem;color:var(--W2);font-weight:300;line-height:1.85;margin-bottom:1.2rem">El modelo BIM que entregó EBF Servicios nos permitió detectar 23 interferencias críticas antes de iniciar la obra. El ahorro en re-trabajos fue enorme.</p>
+      <div style="font-family:var(--M);font-size:.58rem;letter-spacing:.15em;color:var(--W3)">CONSTRUCTORA TEYCO · OBRA HABITACIONAL 2024</div>
+    </div>
+    <div style="background:rgba(17,17,17,.96);border:1px solid rgba(192,32,30,.15);padding:2rem;position:relative">
+      <div style="font-family:var(--F);font-size:3rem;color:var(--R);line-height:1;margin-bottom:.8rem">"</div>
+      <p style="font-size:.88rem;color:var(--W2);font-weight:300;line-height:1.85;margin-bottom:1.2rem">Los presupuestos de licitación de EBF son muy detallados. Ganamos el proyecto porque presentamos el APU más preciso del proceso. Muy recomendable.</p>
+      <div style="font-family:var(--M);font-size:.58rem;letter-spacing:.15em;color:var(--W3)">MARTHEL CONSTRUCTORA · LICITACIÓN PÚBLICA 2023</div>
+    </div>
+    <div style="background:rgba(17,17,17,.96);border:1px solid rgba(192,32,30,.15);padding:2rem;position:relative">
+      <div style="font-family:var(--F);font-size:3rem;color:var(--R);line-height:1;margin-bottom:.8rem">"</div>
+      <p style="font-size:.88rem;color:var(--W2);font-weight:300;line-height:1.85;margin-bottom:1.2rem">Coordinaron los 13 puentes en tiempo récord. El modelo A360 nos permitió revisar avances con el mandante sin necesidad de visitar las obras. Muy buena comunicación.</p>
+      <div style="font-family:var(--M);font-size:.58rem;letter-spacing:.15em;color:var(--W3)">RICARDO MIRANDA · PROYECTOS VIALES 2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="sec" id="blog-preview" style="background:var(--K3);border-top:1px solid rgba(192,32,30,.07)">
+  <div class="stag"><div class="stag-l"></div><span class="stag-t">Conocimiento BIM</span></div>
+  <h2 class="sh">ÚLTIMOS<br><span class="r">ARTÍCULOS</span></h2>
+  <p class="intro">Guías y recursos sobre BIM, presupuestos y construcción en Chile.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2.5rem">
+    <a href="blog/coordinacion-bim-multidisciplinaria-obras-chile.html" style="text-decoration:none;background:rgba(17,17,17,.96);border:1px solid rgba(192,32,30,.15);padding:2rem;display:block;transition:border-color .25s" onmouseover="this.style.borderColor='rgba(192,32,30,.5)'" onmouseout="this.style.borderColor='rgba(192,32,30,.15)'">
+      <div style="font-family:var(--M);font-size:.5rem;letter-spacing:.2em;color:var(--R);margin-bottom:.7rem">COORDINACIÓN BIM · MAYO 2026</div>
+      <div style="font-family:var(--F);font-size:1.3rem;color:var(--W);margin-bottom:.6rem;line-height:1.1">Coordinación BIM Multidisciplinaria en Obras de Chile</div>
+      <div style="font-size:.8rem;color:var(--W2);font-weight:300;line-height:1.75;margin-bottom:.8rem">Cómo funciona el clash detection, qué incluye un informe BIM y cómo reduce hasta 30% los re-trabajos.</div>
+      <span style="font-family:var(--M);font-size:.56rem;color:var(--R);letter-spacing:.12em">LEER ARTÍCULO →</span>
+    </a>
+    <a href="blog/modelado-bim-chile-guia-completa.html" style="text-decoration:none;background:rgba(17,17,17,.96);border:1px solid rgba(192,32,30,.15);padding:2rem;display:block;transition:border-color .25s" onmouseover="this.style.borderColor='rgba(192,32,30,.5)'" onmouseout="this.style.borderColor='rgba(192,32,30,.15)'">
+      <div style="font-family:var(--M);font-size:.5rem;letter-spacing:.2em;color:var(--R);margin-bottom:.7rem">MODELADO BIM · MAYO 2026</div>
+      <div style="font-family:var(--F);font-size:1.3rem;color:var(--W);margin-bottom:.6rem;line-height:1.1">Guía Completa LOD 100 al LOD 400 en Chile</div>
+      <div style="font-size:.8rem;color:var(--W2);font-weight:300;line-height:1.75;margin-bottom:.8rem">Todo sobre niveles de desarrollo BIM, beneficios para obras civiles, educativas y habitacionales.</div>
+      <span style="font-family:var(--M);font-size:.56rem;color:var(--R);letter-spacing:.12em">LEER ARTÍCULO →</span>
+    </a>
+    <a href="blog/presupuesto-licitacion-obras-construccion-chile.html" style="text-decoration:none;background:rgba(17,17,17,.96);border:1px solid rgba(192,32,30,.15);padding:2rem;display:block;transition:border-color .25s" onmouseover="this.style.borderColor='rgba(192,32,30,.5)'" onmouseout="this.style.borderColor='rgba(192,32,30,.15)'">
+      <div style="font-family:var(--M);font-size:.5rem;letter-spacing:.2em;color:var(--R);margin-bottom:.7rem">PRESUPUESTOS · MAYO 2026</div>
+      <div style="font-family:var(--F);font-size:1.3rem;color:var(--W);margin-bottom:.6rem;line-height:1.1">Presupuesto de Licitación de Obras: Guía 2026</div>
+      <div style="font-size:.8rem;color:var(--W2);font-weight:300;line-height:1.75;margin-bottom:.8rem">Cubicaciones, APU, gastos generales, errores a evitar y ventajas del presupuesto BIM.</div>
+      <span style="font-family:var(--M);font-size:.56rem;color:var(--R);letter-spacing:.12em">LEER ARTÍCULO →</span>
+    </a>
+  </div>
+  <div style="text-align:center">
+    <a href="blog/" style="display:inline-block;background:transparent;border:1px solid rgba(240,235,227,.2);color:var(--W);padding:.9rem 2.2rem;font-family:var(--M);font-size:.68rem;letter-spacing:.2em;text-decoration:none;text-transform:uppercase;transition:all .22s" onmouseover="this.style.borderColor='var(--R)';this.style.color='var(--R)'" onmouseout="this.style.borderColor='rgba(240,235,227,.2)';this.style.color='var(--W)'">VER TODOS LOS ARTÍCULOS →</a>
+  </div>
+</section>
+
 <div class="wa-float">
   <div class="wa-pop" id="waPop">
-    <div class="wa-ph"><div class="wa-phl"><div class="wa-av">🏗️</div><div><div class="wa-pn">EBF Servicios</div><div class="wa-ps"><span class="esi on">Arquitectura & BIM</span><span class="eni">Architecture & BIM</span></div></div></div><button class="wa-px" onclick="toggleWA()">✕</button></div>
+    <div class="wa-ph"><div class="wa-phl"><div class="wa-av">🏗️</div><div><div class="wa-pn">EBF Servicios</div><div class="wa-ps"><span class="esi on">Arquitectura & BIM</span><span class="eni">Architecture & BIM</span></div></div></div><button class="wa-px" onclick="toggleWA()" aria-label="Cerrar">✕</button></div>
     <div class="wa-pb"><div class="wa-msg"><span class="es on">¡Hola! 👋 ¿Tienes un proyecto? Primera consulta <strong>100% gratuita</strong>.</span><span class="en">Hello! 👋 Got a project? First consultation <strong>100% free</strong>.</span></div><a class="wa-link" href="https://wa.me/56968010204?text=Hola%20EBF%2C%20consulta%20proyecto%20BIM." target="_blank" rel="noopener"><span class="esi on">💬 Iniciar chat en WhatsApp</span><span class="eni">💬 Start WhatsApp chat</span></a></div>
   </div>
   <div class="wa-btn-wrap">
-    <button class="wa-btn" onclick="toggleWA()"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+    <button class="wa-btn" onclick="toggleWA()" aria-label="Abrir chat WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
     <div class="wa-notif">1</div>
   </div>
 </div>
@@ -745,4 +815,12 @@ renderSlots();
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
