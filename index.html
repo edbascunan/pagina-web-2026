@@ -152,7 +152,7 @@ h2.sh .r{color:var(--R)}
 .pj-panel{grid-column:1/-1;background:#fff;border-radius:12px;overflow:hidden;display:none;margin-top:.5rem}
 .pj-panel.open{display:block;animation:panelIn .3s ease}
 @keyframes panelIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.pj-panel-inner{display:grid;grid-template-columns:300px 1fr;min-height:680px}
+.pj-panel-inner{display:grid;grid-template-columns:300px 1fr;min-height:740px}
 .pj-panel-info{padding:2rem;background:#fff;display:flex;flex-direction:column;gap:.9rem;overflow-y:auto;border-right:1px solid #f0f0f0}
 .pj-panel-cat{font-size:.7rem;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.12em}
 .pj-panel-title{font-size:1.35rem;font-weight:800;color:#111;line-height:1.25}
@@ -163,8 +163,8 @@ h2.sh .r{color:var(--R)}
 .pj-panel-close{background:#111;color:#fff;border:none;padding:.6rem 1.2rem;font-size:.78rem;border-radius:6px;cursor:pointer}
 .pj-panel-close:hover{background:#444}
 /* Proporción áurea φ=1.618 — el viewer es la parte larga del rectángulo dorado */
-.pj-panel-viewer{position:relative;background:#1a1a1a;overflow:hidden;min-height:680px;aspect-ratio:16/9.9}
-.pj-panel-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.pj-panel-viewer{position:relative;background:#1a1a1a;overflow:hidden;min-height:740px}
+.pj-panel-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:none;min-height:740px}
 .pj-panel-no3d{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:1rem;padding:3rem;text-align:center}
 .pj-panel-no3d p{color:#888;font-size:.88rem;max-width:320px;line-height:1.6}
 .pcard{height:600px;perspective:1000px}
@@ -307,6 +307,18 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 @media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-r{display:none}.hero-l{padding:8rem 2rem 5rem}.sv-layout{grid-template-columns:1fr}.sv-sticky{position:static}.ag-wrap,.ct-wrap,.wy-grid{grid-template-columns:1fr}.wy-visual{display:none}.tm-grid,.bl-grid{grid-template-columns:1fr}section.sec{padding:5rem 2rem}}
 @media(max-width:700px){nav{padding:.9rem 1.5rem}.nav-links{display:none}.pj-grid{grid-template-columns:1fr}.fr2,.slots{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}.flinks{justify-content:center;flex-wrap:wrap}.tm-grid,.bl-grid{grid-template-columns:1fr}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // EmailJS — inicializar con Public Key
+  // Pasos para activar: emailjs.com → crear cuenta gratis → 
+  // Add Service (Gmail) → crear template → copiar Public Key aquí
+  const EJS_PUBLIC_KEY  = 'TU_PUBLIC_KEY';   // ← reemplazar
+  const EJS_SERVICE_ID  = 'TU_SERVICE_ID';   // ← reemplazar  
+  const EJS_TEMPLATE_NOTIF = 'TU_TEMPLATE_NOTIF'; // notif a Edgard
+  const EJS_TEMPLATE_CONF  = 'TU_TEMPLATE_CONF';  // confirmación al cliente
+  const EJS_READY = EJS_PUBLIC_KEY !== 'TU_PUBLIC_KEY';
+  if(EJS_READY) emailjs.init({publicKey: EJS_PUBLIC_KEY});
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -321,7 +333,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
     <li><a onclick="go('proyectos')"><span class="esi on">Proyectos</span><span class="eni">Projects</span></a></li>
     <li><a onclick="go('agendar')"><span class="esi on">Agendar</span><span class="eni">Schedule</span></a></li>
     <li><a onclick="go('contacto')"><span class="esi on">Contacto</span><span class="eni">Contact</span></a></li>
-    <li><a href="blog/">Blog</a></li>
+    <li><a href="/blog/">Blog</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-toggle">
@@ -455,24 +467,24 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
       <div class="stag"><div class="stag-l"></div><span class="stag-t">Blog BIM · EBF Servicios</span></div>
       <h2 class="sh">ÚLTIMOS <span class="r">ARTÍCULOS</span></h2>
     </div>
-    <a class="bl-ver" href="blog/">Ver todos los artículos →</a>
+    <a class="bl-ver" href="/blog/">Ver todos los artículos →</a>
   </div>
   <div class="bl-grid">
-    <a class="bl-card" href="blog/coordinacion-bim-multidisciplinaria-obras-chile.html">
+    <a class="bl-card" href="/blog/coordinacion-bim-multidisciplinaria-obras-chile.html">
       <div class="bl-cat">Coordinación BIM · Mayo 2026</div>
       <div class="bl-title">Coordinación BIM Multidisciplinaria en Obras de Chile</div>
       <div class="bl-desc">Clash detection, modelo federado, informes de interferencias y cómo EBF lo aplica en obras reales. Reduce hasta 30% los re-trabajos.</div>
       <div class="bl-meta">9 min de lectura</div>
       <span class="bl-link">Leer artículo →</span>
     </a>
-    <a class="bl-card" href="blog/modelado-bim-chile-guia-completa.html">
+    <a class="bl-card" href="/blog/modelado-bim-chile-guia-completa.html">
       <div class="bl-cat">Modelado BIM · Mayo 2026</div>
       <div class="bl-title">Modelado BIM en Chile: Guía Completa LOD 100 al LOD 400</div>
       <div class="bl-desc">Qué es BIM, niveles LOD 100 a LOD 400, beneficios para obras civiles, educativas y habitacionales, y cómo elegir especialistas en Santiago.</div>
       <div class="bl-meta">8 min de lectura</div>
       <span class="bl-link">Leer artículo →</span>
     </a>
-    <a class="bl-card" href="blog/presupuesto-licitacion-obras-construccion-chile.html">
+    <a class="bl-card" href="/blog/presupuesto-licitacion-obras-construccion-chile.html">
       <div class="bl-cat">Presupuestos · Mayo 2026</div>
       <div class="bl-title">Presupuesto de Licitación de Obras en Chile: Guía 2026</div>
       <div class="bl-desc">Cubicaciones, APU, gastos generales, errores comunes y las ventajas del presupuesto BIM sobre el método tradicional.</div>
@@ -562,7 +574,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
     <a onclick="go('proyectos')"><span class="esi on">Proyectos</span><span class="eni">Projects</span></a>
     <a onclick="go('agendar')"><span class="esi on">Agendar</span><span class="eni">Schedule</span></a>
     <a onclick="go('contacto')"><span class="esi on">Contacto</span><span class="eni">Contact</span></a>
-    <a href="blog/">Blog</a>
+    <a href="/blog/">Blog</a>
   </div>
   <div class="fc2">© 2026 EBF SERVICIOS · SANTIAGO, CHILE</div>
 </footer>
@@ -579,8 +591,8 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 </div>
 
 <script>
-const SCRIPT='https://script.google.com/macros/s/AKfycbw4CXSjTRlXAQOm8lNJMuuCGxbJ1Uqq2fRMlJS5dSqriyFNM-LV4laLdBxXT9EUvIRM/exec';
-const N8N='https://edbascunan.app.n8n.cloud/webhook/ebf-contacto';
+const SCRIPT='https://script.google.com/macros/s/AKfycbzAM4x4AM7-D6gusy9hSKjZwv9jkJ2mhhyh2Imj8ABpVvzsNhnAOPedbFHu4a_KXNWN/exec';
+// n8n reemplazado por Google Apps Script (gratuito)
 const PJS=[
   {cat:'Obras Civiles',title:'Urbanización Antupiren',description:'Elaboración de presupuesto objetivo, cubicaciones, cotizaciones, programación de obra y control de recursos. Jefe de Oficina Técnica.',images:['https://i.postimg.cc/jqXrHYr3/Antu1.png','https://i.postimg.cc/XYTMjVwq/Antu2.png','https://i.postimg.cc/J7cPt1W0/Antu3.png'],a360Link:'default',serviceDescription:'Servicios integrales de gestión de proyectos:\n\n• Cubicaciones detalladas de materiales\n• Cotizaciones y Análisis de Precios Unitarios\n• Elaboración de presupuestos\n• Análisis de gastos generales\n• Programación, Control y seguimiento de obra',services:['Cubicaciones','Presupuestos'],client:'Constructora Antupiren',date:'2023',location:'Santiago, Chile'},
   {cat:'Obras Civiles',title:'Urbanización El Peñón M6',description:'Elaboración de presupuesto objetivo, cubicaciones, cotizaciones, programación de obra y control de recursos.',images:['https://i.postimg.cc/Jhc6BJyy/M61.png','https://i.postimg.cc/brM3j955/M62.png','https://i.postimg.cc/jqk8NRjh/M63.png'],a360Link:'default',serviceDescription:'Servicios integrales de gestión de proyectos:\n\n• Cubicaciones detalladas de materiales\n• Cotizaciones y Análisis de Precios Unitarios\n• Elaboración de presupuestos\n• Análisis de gastos generales\n• Programación, Control y seguimiento de obra',services:['Cubicaciones','Presupuestos'],client:'Constructora El Peñón',date:'2023',location:'Santiago, Chile'},
@@ -609,7 +621,7 @@ function buildPanel(ap){
   const toggleMode=show3d?'info':'3d';
   const has3d=ap.a360Link&&ap.a360Link!=='default';
   let viewer;
-  if(show3d){viewer='<div class="pj-panel-viewer"><iframe src="'+ap.a360Link+'" allow="fullscreen;accelerometer;autoplay;camera;gyroscope;microphone;xr-spatial-tracking" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe></div>';}
+  if(show3d){viewer='<div class="pj-panel-viewer"><iframe src="'+ap.a360Link+'" allow="fullscreen;accelerometer;autoplay;camera;gyroscope;microphone;xr-spatial-tracking" allowfullscreen referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation"></iframe></div>';}
   else{const extraBtn=has3d?'<button class="btn-3d" onclick="openPanel('+ACTIVE_PJ+',\'3d\',event)" style="margin-top:.5rem">Ver Modelo 3D en A360</button>':'';viewer='<div class="pj-panel-viewer"><div class="pj-panel-no3d"><p style="font-size:2.5rem">📋</p><p>'+(ap.serviceDescription||ap.description)+'</p>'+extraBtn+'</div></div>';}
   const toggleBtn=has3d?'<button class="btn-3d" onclick="openPanel('+ACTIVE_PJ+',\''+toggleMode+'\',event)">'+toggleLabel+'</button>':'';
   return '<div class="pj-panel open"><div class="pj-panel-inner"><div class="pj-panel-info"><div class="pj-panel-cat">'+ap.cat+' · '+ap.date+' · '+ap.location+'</div><div class="pj-panel-title">'+ap.title+'</div><div class="pj-panel-desc">'+(ap.serviceDescription||ap.description)+'</div><div class="pj-panel-tags">'+ap.services.map(function(s){return'<span class="pcard-tag">'+s+'</span>';}).join('')+'</div><div class="pj-panel-meta"><span><strong>Cliente:</strong> '+ap.client+'</span></div><div class="pj-panel-btns">'+toggleBtn+'<button class="pj-panel-close" onclick="closePanel(event)">✕ Cerrar</button></div></div>'+viewer+'</div></div>';
@@ -667,12 +679,22 @@ async function postData(url,data){
   return false;
 }
 async function bookMeeting(){
-  var n=document.getElementById('calName').value.trim();var em=document.getElementById('calEmail').value.trim();var t=document.getElementById('calType').value;var msg=document.getElementById('calMsg');var es=LANG==='es';
-  if(!n||!em||!SEL_SLOT||!t){msg.style.color='#dc2626';msg.textContent='⚠ '+(es?'Selecciona horario y completa tus datos.':'Select a slot and fill your details.');return;}
-  msg.style.color='#888';msg.textContent=es?'Enviando...':'Sending...';
-  await postData('https://edbascunan.app.n8n.cloud/webhook/ebf-agenda-reserva',{nombre:n,correo:em,servicio:t,horario:SEL_SLOT,horario_label:SEL_SLOT_LABEL,fecha:new Date().toLocaleString('es-CL')});
-  msg.style.color='#16a34a';msg.textContent='✓ '+(es?'¡Reunión agendada! Te confirmamos en menos de 1 hora.':'Meeting booked! We confirm within 1 hour.');
-  document.getElementById('calName').value='';document.getElementById('calEmail').value='';document.getElementById('calType').value='';if(document.getElementById('calMsg2'))document.getElementById('calMsg2').value='';
+  var n=document.getElementById('calName').value.trim();var em=document.getElementById('calEmail').value.trim();var t=document.getElementById('calType').value;var msgEl=document.getElementById('calMsg');var es=LANG==='es';
+  if(!n||!em||!SEL_SLOT||!t){msgEl.style.color='#dc2626';msgEl.textContent='⚠ '+(es?'Selecciona horario y completa tus datos.':'Select a slot and fill your details.');return;}
+  msgEl.style.color='#888';msgEl.textContent=es?'Enviando...':'Sending...';
+  var msgOpt=document.getElementById('calMsg2')?document.getElementById('calMsg2').value.trim():'';
+  var fecha=new Date().toLocaleString('es-CL');
+  var payload={nombre:n,correo:em,servicio:t,mensaje:msgOpt||'No indicado',horario:SEL_SLOT,horario_label:SEL_SLOT_LABEL,fecha:fecha,tipo:'agenda'};
+  await postData(SCRIPT,payload);
+  if(EJS_READY){
+    try{
+      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{from_name:n,from_email:em,service:t,message:msgOpt||'Sin mensaje',date:fecha,slot:SEL_SLOT_LABEL,to_email:'contacto@ebfservicios.cl'});
+      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{to_name:n,to_email:em,service:t,slot:SEL_SLOT_LABEL,reply_email:'contacto@ebfservicios.cl'});
+    }catch(ex){}
+  }
+  msgEl.style.color='#16a34a';msgEl.textContent='✓ '+(es?'¡Reunión agendada! Revisa tu correo con la confirmación.':'Meeting booked! Check your email for confirmation.');
+  document.getElementById('calName').value='';document.getElementById('calEmail').value='';document.getElementById('calType').value='';
+  if(document.getElementById('calMsg2'))document.getElementById('calMsg2').value='';
   SEL_SLOT=null;SEL_SLOT_LABEL=null;document.querySelectorAll('.slot').forEach(function(s){s.classList.remove('on');});renderSlots();
 }
 async function sendForm(){
@@ -681,9 +703,27 @@ async function sendForm(){
   if(!n||!em||!msg||!sv){st.className='fst err';st.textContent='⚠ '+(es?'Completa todos los campos marcados con *.':'Fill all required fields.');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){st.className='fst err';st.textContent='⚠ '+(es?'Correo electrónico inválido.':'Invalid email address.');return;}
   btn.disabled=true;btn.innerHTML=es?'ENVIANDO...':'SENDING...';st.className='fst';st.style.display='none';
-  const payload={nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'})};
-  await Promise.allSettled([postData(SCRIPT,payload),postData(N8N,payload)]);
-  st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong> Te contactamos en menos de 24 hrs.':'<strong>Inquiry sent!</strong> We will contact you within 24 hours.');
+  const fecha=new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'});
+  const payload={nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:fecha,tipo:'contacto'};
+  // 1. Guardar en Google Sheets
+  await postData(SCRIPT,payload);
+  // 2. EmailJS: notificación a Edgard + confirmación al cliente
+  if(EJS_READY){
+    try{
+      // Notificación interna a contacto@ebf.cl
+      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{
+        from_name:n,from_email:em,phone:ph||'No indicado',
+        service:sv,message:msg,date:fecha,
+        to_email:'contacto@ebfservicios.cl'
+      });
+      // Confirmación automática al cliente
+      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{
+        to_name:n,to_email:em,service:sv,
+        reply_email:'contacto@ebfservicios.cl'
+      });
+    }catch(ex){}
+  }
+  st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong> Te contactamos en menos de 24 hrs. Revisa tu correo.':'<strong>Inquiry sent!</strong> We will contact you within 24 hours. Check your email.');
   ['fn','fe','fp','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('fv').value='';
   btn.disabled=false;btn.innerHTML=es?'ENVIAR CONSULTA →':'SEND INQUIRY →';
 }
