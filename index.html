@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80">
 <meta name="twitter:title" content="EBF Servicios · Modelado BIM y Presupuestos de Obras Chile">
 <meta name="twitter:description" content="Modelado BIM LOD 400, cubicaciones, presupuestos de licitación y coordinación BIM para obras de construcción e infraestructura en Chile.">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"EBF Servicios","description":"Empresa especializada en Modelado BIM, cubicaciones, presupuestos de obras y análisis de precios unitarios en Chile","url":"https://ebf.cl/","telephone":"+56968010204","email":"contacto@ebfservicios.cl","address":{"@type":"PostalAddress","streetAddress":"Dr. Lucas Sierra 2807, Dpto 420","addressLocality":"Santiago","addressRegion":"Región Metropolitana","addressCountry":"CL"},"geo":{"@type":"GeoCoordinates","latitude":-33.4569,"longitude":-70.6483},"openingHours":["Tu 11:00-17:00","Fr 11:00-17:00"],"serviceArea":{"@type":"Country","name":"Chile"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios BIM","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Modelado BIM LOD 100 al LOD 400"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Cubicaciones y Presupuestos de Obras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Análisis de Precios Unitarios"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Presupuestos de Licitación de Obras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"BIM Infraestructura, Puentes y Carreteras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Coordinación BIM Multidisciplinaria"}}]},"sameAs":["https://ebf.cl"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"EBF Servicios","description":"Empresa especializada en Modelado BIM, cubicaciones, presupuestos de obras y análisis de precios unitarios en Chile","url":"https://ebf.cl/","telephone":"+56968010204","email":"contacto@ebf.cl","address":{"@type":"PostalAddress","streetAddress":"Dr. Lucas Sierra 2807, Dpto 420","addressLocality":"Santiago","addressRegion":"Región Metropolitana","addressCountry":"CL"},"geo":{"@type":"GeoCoordinates","latitude":-33.4569,"longitude":-70.6483},"openingHours":["Tu 11:00-17:00","Fr 11:00-17:00"],"serviceArea":{"@type":"Country","name":"Chile"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios BIM","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Modelado BIM LOD 100 al LOD 400"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Cubicaciones y Presupuestos de Obras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Análisis de Precios Unitarios"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Presupuestos de Licitación de Obras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"BIM Infraestructura, Puentes y Carreteras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Coordinación BIM Multidisciplinaria"}}]},"sameAs":["https://ebf.cl"]}</script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -547,7 +547,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
       <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="esi on">Escríbenos</span><span class="eni">Get in touch</span></span></div>
       <h2 class="sh"><span class="es on">¿TIENES UN<br><span class="r">PROYECTO</span>?</span><span class="en">GOT A<br><span class="r">PROJECT</span>?</span></h2>
       <p class="ct-l-p"><span class="es on">Déjanos tus datos y te respondemos en menos de 24 horas. La primera consulta siempre es sin costo.</span><span class="en">Leave your details and we'll respond in under 24 hours. First consultation always free.</span></p>
-      <div class="cd"><span class="cd-ic">✉</span><div class="cd-tx"><strong>Email</strong>contacto@ebfservicios.cl</div></div>
+      <div class="cd"><span class="cd-ic">✉</span><div class="cd-tx"><strong>Email</strong>contacto@ebf.cl</div></div>
       <div class="cd"><span class="cd-ic">📱</span><div class="cd-tx"><strong>WhatsApp</strong>+56 9 6801 0204</div></div>
       <div class="cd"><span class="cd-ic">📍</span><div class="cd-tx"><strong><span class="esi on">Dirección</span><span class="eni">Address</span></strong>Dr. Lucas Sierra 2807, Dpto 420, Quinta Normal, Santiago</div></div>
       <div class="verif"><div class="verif-h">✓ FORMULARIO CONECTADO · GOOGLE SHEETS EN TIEMPO REAL</div><p><span class="es on">Cada envío registra nombre, correo, teléfono, servicio, consulta y fecha automáticamente.</span><span class="en">Each submission automatically records name, email, phone, service, inquiry and date.</span></p></div>
@@ -692,8 +692,8 @@ async function bookMeeting(){
   await postData(SCRIPT,payload);
   if(EJS_READY){
     try{
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{from_name:n,from_email:em,service:t,message:msgOpt||'Sin mensaje',date:fecha,slot:SEL_SLOT_LABEL,to_email:'ed.bascunan@gmail.com'});
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{to_name:n,to_email:em,service:t,slot:SEL_SLOT_LABEL,reply_email:'contacto@ebfservicios.cl'});
+      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{from_name:n,from_email:em,service:t,message:msgOpt||'Sin mensaje',date:fecha,slot:SEL_SLOT_LABEL,to_email:'contacto@ebf.cl'});
+      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{to_name:n,to_email:em,service:t,slot:SEL_SLOT_LABEL,reply_email:'contacto@ebf.cl'});
     }catch(ex){}
   }
   msgEl.style.color='#16a34a';msgEl.textContent='✓ '+(es?'¡Reunión agendada! Revisa tu correo con la confirmación.':'Meeting booked! Check your email for confirmation.');
@@ -718,12 +718,12 @@ async function sendForm(){
       emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{
         from_name:n,from_email:em,phone:ph||'No indicado',
         service:sv,message:msg,date:fecha,
-        to_email:'ed.bascunan@gmail.com'
+        to_email:'contacto@ebf.cl'
       });
       // Confirmación automática al cliente
       emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{
         to_name:n,to_email:em,service:sv,
-        reply_email:'contacto@ebfservicios.cl'
+        reply_email:'contacto@ebf.cl'
       });
     }catch(ex){}
   }
