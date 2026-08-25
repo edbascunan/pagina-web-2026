@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80">
 <meta name="twitter:title" content="EBF Servicios · Modelado BIM y Presupuestos de Obras Chile">
 <meta name="twitter:description" content="Modelado BIM LOD 400, cubicaciones, presupuestos de licitación y coordinación BIM para obras de construcción e infraestructura en Chile.">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"EBF Servicios","description":"Empresa especializada en Modelado BIM, cubicaciones, presupuestos de obras y análisis de precios unitarios en Chile","url":"https://ebf.cl/","telephone":"+56968010204","email":"contacto@ebfservicios.cl","address":{"@type":"PostalAddress","streetAddress":"Dr. Lucas Sierra 2807, Dpto 420","addressLocality":"Santiago","addressRegion":"Región Metropolitana","addressCountry":"CL"},"geo":{"@type":"GeoCoordinates","latitude":-33.4569,"longitude":-70.6483},"openingHours":["Tu 11:00-17:00","Fr 11:00-17:00"],"serviceArea":{"@type":"Country","name":"Chile"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios BIM","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Modelado BIM LOD 100 al LOD 400"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Cubicaciones y Presupuestos de Obras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Análisis de Precios Unitarios"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Presupuestos de Licitación de Obras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"BIM Infraestructura, Puentes y Carreteras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Coordinación BIM Multidisciplinaria"}}]},"sameAs":["https://ebf.cl"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"EBF Servicios","description":"Empresa especializada en Modelado BIM, cubicaciones, presupuestos de obras y análisis de precios unitarios en Chile","url":"https://ebf.cl/","telephone":"+56968010204","email":"contacto@ebf.cl","address":{"@type":"PostalAddress","streetAddress":"Dr. Lucas Sierra 2807, Dpto 420","addressLocality":"Santiago","addressRegion":"Región Metropolitana","addressCountry":"CL"},"geo":{"@type":"GeoCoordinates","latitude":-33.4569,"longitude":-70.6483},"openingHours":["Tu 11:00-17:00","Fr 11:00-17:00"],"serviceArea":{"@type":"Country","name":"Chile"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios BIM","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Modelado BIM LOD 100 al LOD 400"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Cubicaciones y Presupuestos de Obras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Análisis de Precios Unitarios"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Presupuestos de Licitación de Obras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"BIM Infraestructura, Puentes y Carreteras"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Coordinación BIM Multidisciplinaria"}}]},"sameAs":["https://ebf.cl"]}</script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -163,8 +163,13 @@ h2.sh .r{color:var(--R)}
 .pj-panel-close{background:#111;color:#fff;border:none;padding:.6rem 1.2rem;font-size:.78rem;border-radius:6px;cursor:pointer}
 .pj-panel-close:hover{background:#444}
 /* Proporción áurea φ=1.618 — el viewer es la parte larga del rectángulo dorado */
-.pj-panel-viewer{position:relative;background:#1a1a1a;overflow:hidden;min-height:740px}
-.pj-panel-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:none;min-height:740px}
+.pj-panel-viewer{position:relative;background:#1a1a1a;overflow:hidden;aspect-ratio:1/1.618;min-height:420px}
+.pj-panel-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.pj-panel-3d{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:1rem;padding:2rem;text-align:center;background-size:cover;background-position:center;position:relative}
+.pj-panel-3d::before{content:'';position:absolute;inset:0;background:rgba(10,10,10,.72)}
+.pj-panel-3d>*{position:relative;z-index:1}
+.pj-panel-3d p{color:#ddd;font-size:.85rem;max-width:320px}
+@media(max-width:700px){.pj-panel-viewer{min-height:340px}}
 .pj-panel-no3d{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:1rem;padding:3rem;text-align:center}
 .pj-panel-no3d p{color:#888;font-size:.88rem;max-width:320px;line-height:1.6}
 .pcard{height:600px;perspective:1000px}
@@ -304,8 +309,27 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 .fc2{font-family:var(--M);color:var(--W3);font-size:.6rem}
 .es,.en{display:none}.es.on,.en.on{display:block}
 .esi,.eni{display:none}.esi.on,.eni.on{display:inline}
-@media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-r{display:none}.hero-l{padding:8rem 2rem 5rem}.sv-layout{grid-template-columns:1fr}.sv-sticky{position:static}.ag-wrap,.ct-wrap,.wy-grid{grid-template-columns:1fr}.wy-visual{display:none}.tm-grid,.bl-grid{grid-template-columns:1fr}section.sec{padding:5rem 2rem}}
-@media(max-width:700px){nav{padding:.9rem 1.5rem}.nav-links{display:none}.pj-grid{grid-template-columns:1fr}.fr2,.slots{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}.flinks{justify-content:center;flex-wrap:wrap}.tm-grid,.bl-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-r{display:none}.hero-l{padding:8rem 2rem 5rem}.sv-layout{grid-template-columns:1fr}.sv-sticky{position:static}.ag-wrap,.ct-wrap,.wy-grid{grid-template-columns:1fr}.wy-visual{display:none}.tm-grid,.bl-grid{grid-template-columns:1fr}section.sec{padding:5rem 2rem}.pj-grid{grid-template-columns:repeat(2,1fr)}}
+.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;padding:0}
+.nav-burger span{display:block;width:100%;height:2px;background:var(--W);transition:transform .25s,opacity .25s}
+.nav-burger.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.on span:nth-child(2){opacity:0}
+.nav-burger.on span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:1100px){.pj-panel-inner{grid-template-columns:1fr;min-height:auto}}
+@media(max-width:700px){
+  nav{padding:.9rem 1.5rem}
+  .nav-links{position:fixed;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--K2);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);max-height:0;overflow:hidden;transition:max-height .3s ease;z-index:90}
+  .nav-links.open{max-height:400px}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:1.1rem 1.5rem;font-size:.85rem;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-right .wa-nav span{display:none}
+  .nav-burger{display:flex}
+  .pj-grid{grid-template-columns:1fr}.fr2,.slots{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}.flinks{justify-content:center;flex-wrap:wrap}.tm-grid,.bl-grid{grid-template-columns:1fr}
+  h1.hero-h{font-size:clamp(2.6rem,11vw,4.5rem)}
+  h2.sh{font-size:clamp(2rem,8vw,3rem)}
+  .pj-panel-btns{flex-wrap:wrap}
+  section.sec{padding:3.5rem 1.25rem}
+}
 </style>
 </head>
 
@@ -317,11 +341,11 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 
 <nav id="mainNav">
   <div class="logo" onclick="window.scrollTo(0,0)">EBF<span>.</span><sub>SERVICIOS</sub></div>
-  <ul class="nav-links">
-    <li><a onclick="go('servicios')"><span class="esi on">Servicios</span><span class="eni">Services</span></a></li>
-    <li><a onclick="go('proyectos')"><span class="esi on">Proyectos</span><span class="eni">Projects</span></a></li>
-    <li><a onclick="go('agendar')"><span class="esi on">Agendar</span><span class="eni">Schedule</span></a></li>
-    <li><a onclick="go('contacto')"><span class="esi on">Contacto</span><span class="eni">Contact</span></a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="go('servicios');closeMenu()"><span class="esi on">Servicios</span><span class="eni">Services</span></a></li>
+    <li><a onclick="go('proyectos');closeMenu()"><span class="esi on">Proyectos</span><span class="eni">Projects</span></a></li>
+    <li><a onclick="go('agendar');closeMenu()"><span class="esi on">Agendar</span><span class="eni">Schedule</span></a></li>
+    <li><a onclick="go('contacto');closeMenu()"><span class="esi on">Contacto</span><span class="eni">Contact</span></a></li>
     <li><a href="/blog/">Blog</a></li>
   </ul>
   <div class="nav-right">
@@ -333,6 +357,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
       <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       WhatsApp
     </a>
+    <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -532,7 +557,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
       <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="esi on">Escríbenos</span><span class="eni">Get in touch</span></span></div>
       <h2 class="sh"><span class="es on">¿TIENES UN<br><span class="r">PROYECTO</span>?</span><span class="en">GOT A<br><span class="r">PROJECT</span>?</span></h2>
       <p class="ct-l-p"><span class="es on">Déjanos tus datos y te respondemos en menos de 24 horas. La primera consulta siempre es sin costo.</span><span class="en">Leave your details and we'll respond in under 24 hours. First consultation always free.</span></p>
-      <div class="cd"><span class="cd-ic">✉</span><div class="cd-tx"><strong>Email</strong>contacto@ebfservicios.cl</div></div>
+      <div class="cd"><span class="cd-ic">✉</span><div class="cd-tx"><strong>Email</strong>contacto@ebf.cl</div></div>
       <div class="cd"><span class="cd-ic">📱</span><div class="cd-tx"><strong>WhatsApp</strong>+56 9 6801 0204</div></div>
       <div class="cd"><span class="cd-ic">📍</span><div class="cd-tx"><strong><span class="esi on">Dirección</span><span class="eni">Address</span></strong>Dr. Lucas Sierra 2807, Dpto 420, Quinta Normal, Santiago</div></div>
       <div class="verif"><div class="verif-h">✓ FORMULARIO CONECTADO · GOOGLE SHEETS EN TIEMPO REAL</div><p><span class="es on">Cada envío registra nombre, correo, teléfono, servicio, consulta y fecha automáticamente.</span><span class="en">Each submission automatically records name, email, phone, service, inquiry and date.</span></p></div>
@@ -610,7 +635,7 @@ function buildPanel(ap){
   const toggleMode=show3d?'info':'3d';
   const has3d=ap.a360Link&&ap.a360Link!=='default';
   let viewer;
-  if(show3d){viewer='<div class="pj-panel-viewer"><iframe src="'+ap.a360Link+'" allow="fullscreen;accelerometer;autoplay;camera;gyroscope;microphone;xr-spatial-tracking" allowfullscreen referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation"></iframe></div>';}
+  if(show3d){const bg=(ap.images&&ap.images[0])?"background-image:url('"+ap.images[0]+"')":'';viewer='<div class="pj-panel-viewer"><div class="pj-panel-3d" style="'+bg+'"><p style="font-size:2.5rem">🧊</p><p>Autodesk A360 no permite incrustar el visor dentro de la página — ábrelo en una pestaña nueva para navegar el modelo 3D.</p><a class="btn-3d" href="'+ap.a360Link+'" target="_blank" rel="noopener">Abrir Modelo 3D en A360 ↗</a></div></div>';}
   else{const extraBtn=has3d?'<button class="btn-3d" onclick="openPanel('+ACTIVE_PJ+',\'3d\',event)" style="margin-top:.5rem">Ver Modelo 3D en A360</button>':'';viewer='<div class="pj-panel-viewer"><div class="pj-panel-no3d"><p style="font-size:2.5rem">📋</p><p>'+(ap.serviceDescription||ap.description)+'</p>'+extraBtn+'</div></div>';}
   const toggleBtn=has3d?'<button class="btn-3d" onclick="openPanel('+ACTIVE_PJ+',\''+toggleMode+'\',event)">'+toggleLabel+'</button>':'';
   return '<div class="pj-panel open"><div class="pj-panel-inner"><div class="pj-panel-info"><div class="pj-panel-cat">'+ap.cat+' · '+ap.date+' · '+ap.location+'</div><div class="pj-panel-title">'+ap.title+'</div><div class="pj-panel-desc">'+(ap.serviceDescription||ap.description)+'</div><div class="pj-panel-tags">'+ap.services.map(function(s){return'<span class="pcard-tag">'+s+'</span>';}).join('')+'</div><div class="pj-panel-meta"><span><strong>Cliente:</strong> '+ap.client+'</span></div><div class="pj-panel-btns">'+toggleBtn+'<button class="pj-panel-close" onclick="closePanel(event)">✕ Cerrar</button></div></div>'+viewer+'</div></div>';
@@ -619,7 +644,7 @@ function renderPJnew(){
   const g=document.getElementById('pjGrid');
   const list=CUR_F==='all'?PJS:PJS.filter(function(p){return p.cat===CUR_F;});
   document.getElementById('pjCount').textContent=list.length+' '+(LANG==='es'?'proyectos':'projects');
-  const cols=window.innerWidth>1100?3:window.innerWidth>600?2:1;
+  const cols=window.innerWidth>1100?3:window.innerWidth>700?2:1;
   let out='';
   list.forEach(function(p,li){
     const gi=PJS.indexOf(p);
@@ -703,6 +728,8 @@ async function sendForm(){
   ['fn','fe','fp','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('fv').value='';
   btn.disabled=false;btn.innerHTML=es?'ENVIAR CONSULTA →':'SEND INQUIRY →';
 }
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');document.getElementById('navBurger').classList.toggle('on');}
+function closeMenu(){document.getElementById('navLinks').classList.remove('open');document.getElementById('navBurger').classList.remove('on');}
 function toggleWA(){const p=document.getElementById('waPop');p.classList.toggle('open');if(p.classList.contains('open'))document.querySelector('.wa-notif').style.display='none';}
 function animCounters(){document.querySelectorAll('[data-count]').forEach(el=>{const t=+el.dataset.count;let c=0;const iv=setInterval(()=>{c=Math.min(c+1,t);el.textContent=c+(c===t?'+':'');if(c>=t)clearInterval(iv);},50);});}
 function setLang(l){LANG=l;document.querySelectorAll('.es,.en').forEach(e=>e.classList.toggle('on',e.classList.contains(l)));document.querySelectorAll('.esi,.eni').forEach(e=>e.classList.toggle('on',e.classList.contains(l+'i')));document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));renderPJnew();}
