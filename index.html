@@ -311,19 +311,8 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 @media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-r{display:none}.hero-l{padding:8rem 2rem 5rem}.sv-layout{grid-template-columns:1fr}.sv-sticky{position:static}.ag-wrap,.ct-wrap,.wy-grid{grid-template-columns:1fr}.wy-visual{display:none}.tm-grid,.bl-grid{grid-template-columns:1fr}section.sec{padding:5rem 2rem}}
 @media(max-width:700px){nav{padding:.9rem 1.5rem}.nav-links{display:none}.pj-grid{grid-template-columns:1fr}.fr2,.slots{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}.flinks{justify-content:center;flex-wrap:wrap}.tm-grid,.bl-grid{grid-template-columns:1fr}}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  // EmailJS — inicializar con Public Key
-  // Pasos para activar: emailjs.com → crear cuenta gratis → 
-  // Add Service (Gmail) → crear template → copiar Public Key aquí
-  const EJS_PUBLIC_KEY  = 'qj96IJ2MbWJMcGNKI';
-  const EJS_SERVICE_ID  = 'service_9oidty6';
-  const EJS_TEMPLATE_NOTIF = 'template_1'; // notif a Edgard
-  const EJS_TEMPLATE_CONF  = 'template_2';  // confirmación al cliente
-  const EJS_READY = EJS_PUBLIC_KEY !== 'TU_PUBLIC_KEY';
-  if(EJS_READY) emailjs.init({publicKey: EJS_PUBLIC_KEY});
-</script>
 </head>
+
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7NRJ7L4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -595,8 +584,8 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
 </div>
 
 <script>
-const SCRIPT='https://script.google.com/macros/s/AKfycbzAM4x4AM7-D6gusy9hSKjZwv9jkJ2mhhyh2Imj8ABpVvzsNhnAOPedbFHu4a_KXNWN/exec';
-// n8n reemplazado por Google Apps Script (gratuito)
+const SCRIPT='https://hook.us2.make.com/81tos1plmsxi08xqiq73dq6b9ehx5plj';
+// GAS + EmailJS reemplazados por Make (Webhook → Google Sheets → Gmail)
 const PJS=[
   {cat:'Obras Civiles',title:'Urbanización Antupiren',description:'Elaboración de presupuesto objetivo, cubicaciones, cotizaciones, programación de obra y control de recursos. Jefe de Oficina Técnica.',images:['https://i.postimg.cc/jqXrHYr3/Antu1.png','https://i.postimg.cc/XYTMjVwq/Antu2.png','https://i.postimg.cc/J7cPt1W0/Antu3.png'],a360Link:'default',serviceDescription:'Servicios integrales de gestión de proyectos:\n\n• Cubicaciones detalladas de materiales\n• Cotizaciones y Análisis de Precios Unitarios\n• Elaboración de presupuestos\n• Análisis de gastos generales\n• Programación, Control y seguimiento de obra',services:['Cubicaciones','Presupuestos'],client:'Constructora Antupiren',date:'2023',location:'Santiago, Chile'},
   {cat:'Obras Civiles',title:'Urbanización El Peñón M6',description:'Elaboración de presupuesto objetivo, cubicaciones, cotizaciones, programación de obra y control de recursos.',images:['https://i.postimg.cc/Jhc6BJyy/M61.png','https://i.postimg.cc/brM3j955/M62.png','https://i.postimg.cc/jqk8NRjh/M63.png'],a360Link:'default',serviceDescription:'Servicios integrales de gestión de proyectos:\n\n• Cubicaciones detalladas de materiales\n• Cotizaciones y Análisis de Precios Unitarios\n• Elaboración de presupuestos\n• Análisis de gastos generales\n• Programación, Control y seguimiento de obra',services:['Cubicaciones','Presupuestos'],client:'Constructora El Peñón',date:'2023',location:'Santiago, Chile'},
@@ -690,12 +679,6 @@ async function bookMeeting(){
   var fecha=new Date().toLocaleString('es-CL');
   var payload={nombre:n,correo:em,servicio:t,mensaje:msgOpt||'No indicado',horario:SEL_SLOT,horario_label:SEL_SLOT_LABEL,fecha:fecha,tipo:'agenda'};
   await postData(SCRIPT,payload);
-  if(EJS_READY){
-    try{
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{from_name:n,from_email:em,service:t,message:msgOpt||'Sin mensaje',date:fecha,slot:SEL_SLOT_LABEL,to_email:'contacto@ebf.cl'});
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{to_name:n,to_email:em,service:t,slot:SEL_SLOT_LABEL,reply_email:'contacto@ebf.cl'});
-    }catch(ex){}
-  }
   msgEl.style.color='#16a34a';msgEl.textContent='✓ '+(es?'¡Reunión agendada! Revisa tu correo con la confirmación.':'Meeting booked! Check your email for confirmation.');
   document.getElementById('calName').value='';document.getElementById('calEmail').value='';document.getElementById('calType').value='';
   if(document.getElementById('calMsg2'))document.getElementById('calMsg2').value='';
@@ -709,24 +692,8 @@ async function sendForm(){
   btn.disabled=true;btn.innerHTML=es?'ENVIANDO...':'SENDING...';st.className='fst';st.style.display='none';
   const fecha=new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'});
   const payload={nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:fecha,tipo:'contacto'};
-  // 1. Guardar en Google Sheets
+  // 1. Guardar en Sheet + enviar correos (todo vía Make)
   await postData(SCRIPT,payload);
-  // 2. EmailJS: notificación a Edgard + confirmación al cliente
-  if(EJS_READY){
-    try{
-      // Notificación interna a contacto@ebf.cl
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{
-        from_name:n,from_email:em,phone:ph||'No indicado',
-        service:sv,message:msg,date:fecha,
-        to_email:'contacto@ebf.cl'
-      });
-      // Confirmación automática al cliente
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{
-        to_name:n,to_email:em,service:sv,
-        reply_email:'contacto@ebf.cl'
-      });
-    }catch(ex){}
-  }
   st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong> Te contactamos en menos de 24 hrs. Revisa tu correo.':'<strong>Inquiry sent!</strong> We will contact you within 24 hours. Check your email.');
   ['fn','fe','fp','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('fv').value='';
   btn.disabled=false;btn.innerHTML=es?'ENVIAR CONSULTA →':'SEND INQUIRY →';
