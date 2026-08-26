@@ -331,15 +331,6 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   section.sec{padding:3.5rem 1.25rem}
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  const EJS_PUBLIC_KEY  = 'qj96IJ2MbWJMcGNKI';
-  const EJS_SERVICE_ID  = 'service_9oidty6';
-  const EJS_TEMPLATE_NOTIF = 'template_1'; // notif a contacto@ebf.cl
-  const EJS_TEMPLATE_CONF  = 'template_2';  // confirmación al cliente
-  const EJS_READY = true;
-  emailjs.init({publicKey: EJS_PUBLIC_KEY});
-</script>
 </head>
 
 <body>
@@ -718,12 +709,6 @@ async function bookMeeting(){
   var fecha=new Date().toLocaleString('es-CL');
   var payload={nombre:n,correo:em,servicio:t,mensaje:msgOpt||'No indicado',horario:SEL_SLOT,horario_label:SEL_SLOT_LABEL,fecha:fecha,tipo:'agenda'};
   await postData(SCRIPT,payload);
-  if(EJS_READY){
-    try{
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{from_name:n,from_email:em,service:t,message:msgOpt||'Sin mensaje',date:fecha,slot:SEL_SLOT_LABEL,to_email:'contacto@ebf.cl'});
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{to_name:n,to_email:em,service:t,slot:SEL_SLOT_LABEL,reply_email:'contacto@ebf.cl'});
-    }catch(ex){}
-  }
   msgEl.style.color='#16a34a';msgEl.textContent='✓ '+(es?'¡Reunión agendada! Revisa tu correo con la confirmación.':'Meeting booked! Check your email for confirmation.');
   document.getElementById('calName').value='';document.getElementById('calEmail').value='';document.getElementById('calType').value='';
   if(document.getElementById('calMsg2'))document.getElementById('calMsg2').value='';
@@ -737,15 +722,8 @@ async function sendForm(){
   btn.disabled=true;btn.innerHTML=es?'ENVIANDO...':'SENDING...';st.className='fst';st.style.display='none';
   const fecha=new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'});
   const payload={nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:fecha,tipo:'contacto'};
-  // 1. Guardar en Sheet (Make)
+  // Guardar en Sheet + enviar correos (todo vía Make)
   await postData(SCRIPT,payload);
-  // 2. EmailJS: notificación + confirmación
-  if(EJS_READY){
-    try{
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_NOTIF,{from_name:n,from_email:em,phone:ph||'No indicado',service:sv,message:msg,date:fecha,to_email:'contacto@ebf.cl'});
-      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CONF,{to_name:n,to_email:em,service:sv,reply_email:'contacto@ebf.cl'});
-    }catch(ex){}
-  }
   st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong> Te contactamos en menos de 24 hrs. Revisa tu correo.':'<strong>Inquiry sent!</strong> We will contact you within 24 hours. Check your email.');
   ['fn','fe','fp','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('fv').value='';
   btn.disabled=false;btn.innerHTML=es?'ENVIAR CONSULTA →':'SEND INQUIRY →';
