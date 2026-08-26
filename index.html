@@ -171,8 +171,8 @@ h2.sh .r{color:var(--R)}
 .pj-panel-close{background:#111;color:#fff;border:none;padding:.6rem 1.2rem;font-size:.78rem;border-radius:6px;cursor:pointer}
 .pj-panel-close:hover{background:#444}
 /* Proporción áurea φ=1.618 — el viewer es la parte larga del rectángulo dorado */
-.pj-panel-viewer{position:relative;background:#1a1a1a;overflow:hidden;min-height:820px}
-.pj-panel-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:none;min-height:820px}
+.pj-panel-viewer{position:relative;background:#1a1a1a;overflow:hidden;min-height:680px}
+.pj-panel-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:none;min-height:680px}
 .pj-panel-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 .pj-panel-3d{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:1rem;padding:2rem;text-align:center;background-size:cover;background-position:center;position:relative}
 .pj-panel-3d::before{content:'';position:absolute;inset:0;background:rgba(10,10,10,.72)}
@@ -694,7 +694,7 @@ async function postData(url,data){
     }catch(e){}
   }
   // Make.com: acepta POST JSON con CORS abierto
-  if(url.includes('hook.make.com') || url.includes('hook.eu1.make.com') || url.includes('hook.us1.make.com')){
+  if(url.includes('.make.com')){
     try{
       await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:body});
       return true;
