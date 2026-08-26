@@ -316,6 +316,19 @@ h2.sh .r{color:var(--R)}
 .fd input::placeholder,.fd textarea::placeholder{color:var(--W3)}
 .fd input:focus,.fd textarea:focus,.fd select:focus{border-color:var(--R)}
 .fd select option{background:var(--K3)}
+.calc-bg{position:relative;overflow:hidden;background:var(--K3)}
+.calc-wrap{max-width:900px;margin:0 auto}
+.calc-head{text-align:center;margin-bottom:3rem}
+.calc-sub{color:var(--W2);font-size:.95rem;margin-top:.8rem;max-width:520px;margin-left:auto;margin-right:auto}
+.calc-box{background:rgba(255,255,255,.03);border:1px solid rgba(240,235,227,.09);padding:2.5rem}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.calc-result{margin-top:1.5rem;padding:1.8rem;background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.25);text-align:center}
+.calc-result-label{font-family:var(--M);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--W2)}
+.calc-result-value{font-family:var(--F);font-size:2.4rem;color:var(--R);margin:.5rem 0}
+.calc-result-note{font-size:.72rem;color:var(--W3)}
+.calc-cta{width:100%;margin-top:1.5rem;background:var(--R);color:#fff;border:none;padding:1.1rem;font-family:var(--M);font-size:.72rem;letter-spacing:.12em;cursor:pointer;transition:background .2s}
+.calc-cta:hover{background:#b91c1c}
+@media(max-width:700px){.calc-row{grid-template-columns:1fr}.calc-box{padding:1.5rem}.calc-result-value{font-size:1.9rem}}
 .sub-btn{width:100%;background:var(--R);color:var(--W);border:none;padding:1.05rem;font-family:var(--M);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .2s}
 .sub-btn:hover:not(:disabled){background:var(--Rl)}.sub-btn:disabled{opacity:.6;cursor:not-allowed}
 .fst{margin-top:.9rem;padding:.75rem .9rem;font-size:.82rem;display:none;line-height:1.6}
@@ -380,6 +393,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   <ul class="nav-links" id="navLinks">
     <li><a onclick="go('servicios');closeMenu()"><span class="esi on">Servicios</span><span class="eni">Services</span></a></li>
     <li><a onclick="go('proyectos');closeMenu()"><span class="esi on">Proyectos</span><span class="eni">Projects</span></a></li>
+    <li><a onclick="go('calculadora');closeMenu()"><span class="esi on">Calculadora</span><span class="eni">Calculator</span></a></li>
     <li><a onclick="go('agendar');closeMenu()"><span class="esi on">Agendar</span><span class="eni">Schedule</span></a></li>
     <li><a onclick="go('contacto');closeMenu()"><span class="esi on">Contacto</span><span class="eni">Contact</span></a></li>
     <li><a href="/blog/">Blog</a></li>
@@ -541,6 +555,59 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
       <div class="bl-meta">9 min de lectura</div>
       <span class="bl-link">Leer artículo →</span>
     </a>
+  </div>
+</section>
+
+<section class="sec calc-bg" id="calculadora">
+  <div class="calc-wrap">
+    <div class="calc-head">
+      <span class="es on">Herramienta gratuita</span><span class="en">Free tool</span>
+      <h2 class="sh"><span class="es on">CALCULADORA DE PRESUPUESTO BIM</span><span class="en">BIM BUDGET CALCULATOR</span></h2>
+      <p class="calc-sub"><span class="es on">Estima el rango de inversión de tu proyecto BIM en 30 segundos. Sin compromiso.</span><span class="en">Estimate your BIM project's investment range in 30 seconds. No commitment.</span></p>
+    </div>
+    <div class="calc-box">
+      <div class="calc-row">
+        <div class="fd">
+          <label><span class="es on">Tipo de proyecto</span><span class="en">Project type</span></label>
+          <select id="calcTipo" onchange="calcBIM()">
+            <option value="habitacional" data-uf="0.35">Habitacional</option>
+            <option value="comercial" data-uf="0.42">Comercial</option>
+            <option value="educativo" data-uf="0.40">Educativo</option>
+            <option value="industrial" data-uf="0.30">Industrial / Obras Civiles</option>
+            <option value="infraestructura" data-uf="0.55">Infraestructura (puentes, vialidad)</option>
+          </select>
+        </div>
+        <div class="fd">
+          <label><span class="es on">Superficie aproximada (m²)</span><span class="en">Approx. area (m²)</span></label>
+          <input type="number" id="calcM2" value="1500" min="50" max="200000" oninput="calcBIM()">
+        </div>
+      </div>
+      <div class="calc-row">
+        <div class="fd">
+          <label><span class="es on">Nivel de detalle (LOD)</span><span class="en">Level of Detail (LOD)</span></label>
+          <select id="calcLod" onchange="calcBIM()">
+            <option value="1" data-mult="0.7">LOD 100–200 <span class="es on">(anteproyecto)</span><span class="en">(early design)</span></option>
+            <option value="2" data-mult="1" selected>LOD 300 <span class="es on">(proyecto ejecutivo)</span><span class="en">(construction docs)</span></option>
+            <option value="3" data-mult="1.35">LOD 400 <span class="es on">(fabricación / detalle máx.)</span><span class="en">(fabrication / max detail)</span></option>
+          </select>
+        </div>
+        <div class="fd">
+          <label><span class="es on">Servicios adicionales</span><span class="en">Additional services</span></label>
+          <select id="calcExtra" onchange="calcBIM()">
+            <option value="0">— <span class="es on">Solo modelado</span><span class="en">Modeling only</span></option>
+            <option value="0.25"><span class="es on">+ Coordinación multidisciplinaria</span><span class="en">+ Multidisciplinary coordination</span></option>
+            <option value="0.4"><span class="es on">+ Presupuesto y cubicaciones</span><span class="en">+ Budget & quantities</span></option>
+            <option value="0.6"><span class="es on">+ Coordinación y presupuesto</span><span class="en">+ Coordination & budget</span></option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-result-label"><span class="es on">Rango estimado de inversión</span><span class="en">Estimated investment range</span></div>
+        <div class="calc-result-value" id="calcOut">UF 0 – UF 0</div>
+        <div class="calc-result-note"><span class="es on">Estimación referencial. La cotización real depende del alcance específico de tu proyecto.</span><span class="en">Reference estimate only. Final quote depends on your project's specific scope.</span></div>
+      </div>
+      <button class="calc-cta" onclick="calcToForm()"><span class="es on">RECIBIR COTIZACIÓN EXACTA →</span><span class="en">GET EXACT QUOTE →</span></button>
+    </div>
   </div>
 </section>
 
@@ -713,6 +780,28 @@ function renderSlots(){
   c.innerHTML='';
   slots.slice(0,8).forEach(function(s){var el=document.createElement('div');el.className='slot';el.innerHTML='<div class="slot-t">'+s.label+'<br>'+s.time+'</div><div class="slot-a">✓ Disponible</div>';el.onclick=function(){document.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on');});el.classList.add('on');SEL_SLOT=s.iso;SEL_SLOT_LABEL=s.label+' '+s.time;};c.appendChild(el);});
 }
+function calcBIM(){
+  const tipoEl=document.getElementById('calcTipo'),lodEl=document.getElementById('calcLod'),extraEl=document.getElementById('calcExtra');
+  const ufM2=+tipoEl.selectedOptions[0].dataset.uf;
+  const mult=+lodEl.selectedOptions[0].dataset.mult;
+  const extra=+extraEl.value;
+  const m2=Math.max(50,+document.getElementById('calcM2').value||0);
+  const base=m2*ufM2*mult;
+  const min=Math.round(base*(1+extra)*0.85);
+  const max=Math.round(base*(1+extra)*1.25);
+  document.getElementById('calcOut').textContent='UF '+min.toLocaleString('es-CL')+' – UF '+max.toLocaleString('es-CL');
+}
+function calcToForm(){
+  const tipoEl=document.getElementById('calcTipo'),lodEl=document.getElementById('calcLod');
+  const tipoTxt=tipoEl.selectedOptions[0].text,lodTxt=lodEl.selectedOptions[0].text,m2=document.getElementById('calcM2').value,rango=document.getElementById('calcOut').textContent;
+  const map={habitacional:'Modelado BIM',comercial:'Modelado BIM',educativo:'Modelado BIM',industrial:'Infraestructura & Civil',infraestructura:'Infraestructura & Civil'};
+  document.getElementById('fv').value=map[tipoEl.value]||'Modelado BIM';
+  document.getElementById('fm').value='Proyecto '+tipoTxt.toLowerCase()+', '+m2+' m², '+lodTxt+'. Estimación calculadora: '+rango+'. Quiero una cotización exacta.';
+  if(window.gtag)gtag('event','calculator_used',{project_type:tipoEl.value,m2:m2});
+  if(window.fbq)fbq('trackCustom','CalculatorUsed',{project_type:tipoEl.value});
+  document.getElementById('contacto').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>document.getElementById('fn').focus(),600);
+}
 function trackLead(kind,service){
   try{
     if(window.gtag)gtag('event','generate_lead',{lead_type:kind,service:service||''});
@@ -807,7 +896,7 @@ window.addEventListener('scroll',()=>{
   el.style.width=Math.min(pct,100)+'%';
 });
 new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)animCounters();});},{threshold:.5}).observe(document.querySelector('.metrics'));
-setLang('es');renderPJnew();renderSlots();
+setLang('es');renderPJnew();renderSlots();calcBIM();
 </script>
 </body>
 </html>
