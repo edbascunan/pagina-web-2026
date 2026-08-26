@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://i.postimg.cc">
+<link rel="dns-prefetch" href="https://i.postimg.cc">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3KRQX9XGDN"></script>
 <script>
@@ -584,6 +586,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
           <select id="fv"><option value="">—</option><option>Modelado BIM</option><option>Coordinación BIM</option><option>Presupuesto & Cubicaciones</option><option>Gestión de Obra (ITO)</option><option>Infraestructura & Civil</option><option>Visualización A360</option><option>Otro</option></select></div>
       </div>
       <div class="fd"><label><span class="esi on">Descripción del proyecto *</span><span class="eni">Project description *</span></label><textarea id="fm" rows="4" placeholder="Cuéntanos sobre tu proyecto..."></textarea></div>
+      <input type="text" id="fweb" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
       <button class="sub-btn" id="sbtn" onclick="sendForm()"><span class="esi on">ENVIAR CONSULTA →</span><span class="eni">SEND INQUIRY →</span></button>
       <div class="fst" id="fst"></div>
     </div>
@@ -647,7 +650,8 @@ function buildPanel(ap){
   if(show3d){viewer='<div class="pj-panel-viewer"><iframe src="'+ap.a360Link+'" allow="fullscreen;accelerometer;autoplay;camera;gyroscope;microphone;xr-spatial-tracking" allowfullscreen referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation"></iframe></div>';}
   else{const extraBtn=has3d?'<button class="btn-3d" onclick="openPanel('+ACTIVE_PJ+',\'3d\',event)" style="margin-top:.5rem">Ver Modelo 3D en A360</button>':'';viewer='<div class="pj-panel-viewer"><div class="pj-panel-no3d"><p style="font-size:2.5rem">📋</p><p>'+(ap.serviceDescription||ap.description)+'</p>'+extraBtn+'</div></div>';}
   const toggleBtn=has3d?'<button class="btn-3d" onclick="openPanel('+ACTIVE_PJ+',\''+toggleMode+'\',event)">'+toggleLabel+'</button>':'';
-  return '<div class="pj-panel open"><div class="pj-panel-inner"><div class="pj-panel-info"><div class="pj-panel-cat">'+ap.cat+' · '+ap.date+' · '+ap.location+'</div><div class="pj-panel-title">'+ap.title+'</div><div class="pj-panel-desc">'+(ap.serviceDescription||ap.description)+'</div><div class="pj-panel-tags">'+ap.services.map(function(s){return'<span class="pcard-tag">'+s+'</span>';}).join('')+'</div><div class="pj-panel-meta"><span><strong>Cliente:</strong> '+ap.client+'</span></div><div class="pj-panel-btns">'+toggleBtn+'<button class="pj-panel-close" onclick="closePanel(event)">✕ Cerrar</button></div></div>'+viewer+'</div></div>';
+  const waMsg=encodeURIComponent('Hola EBF, vi el proyecto "'+ap.title+'" y me interesa algo similar para mi proyecto.');
+  return '<div class="pj-panel open"><div class="pj-panel-inner"><div class="pj-panel-info"><div class="pj-panel-cat">'+ap.cat+' · '+ap.date+' · '+ap.location+'</div><div class="pj-panel-title">'+ap.title+'</div><div class="pj-panel-desc">'+(ap.serviceDescription||ap.description)+'</div><div class="pj-panel-tags">'+ap.services.map(function(s){return'<span class="pcard-tag">'+s+'</span>';}).join('')+'</div><div class="pj-panel-meta"><span><strong>Cliente:</strong> '+ap.client+'</span></div><div class="pj-panel-btns">'+toggleBtn+'<a class="btn-wa" href="https://wa.me/56968010204?text='+waMsg+'" target="_blank" rel="noopener">💬 WhatsApp</a><button class="pj-panel-close" onclick="closePanel(event)">✕ Cerrar</button></div></div>'+viewer+'</div></div>';
 }
 function renderPJnew(){
   const g=document.getElementById('pjGrid');
@@ -712,12 +716,15 @@ async function postData(url,data){
 }
 async function bookMeeting(){
   var n=document.getElementById('calName').value.trim();var em=document.getElementById('calEmail').value.trim();var t=document.getElementById('calType').value;var msgEl=document.getElementById('calMsg');var es=LANG==='es';
+  var last=+(localStorage.getItem('ebf_last_send')||0);
+  if(Date.now()-last<45000){msgEl.style.color='#dc2626';msgEl.textContent='⚠ '+(es?'Ya enviaste algo hace poco. Espera un momento.':'You already sent something recently. Please wait a moment.');return;}
   if(!n||!em||!SEL_SLOT||!t){msgEl.style.color='#dc2626';msgEl.textContent='⚠ '+(es?'Selecciona horario y completa tus datos.':'Select a slot and fill your details.');return;}
   msgEl.style.color='#888';msgEl.textContent=es?'Enviando...':'Sending...';
   var msgOpt=document.getElementById('calMsg2')?document.getElementById('calMsg2').value.trim():'';
   var fecha=new Date().toLocaleString('es-CL');
   var payload={nombre:n,correo:em,servicio:t,mensaje:msgOpt||'No indicado',horario:SEL_SLOT,horario_label:SEL_SLOT_LABEL,fecha:fecha,tipo:'agenda'};
   await postData(SCRIPT,payload);
+  localStorage.setItem('ebf_last_send',Date.now());
   msgEl.style.color='#16a34a';msgEl.textContent='✓ '+(es?'¡Reunión agendada! Revisa tu correo con la confirmación.':'Meeting booked! Check your email for confirmation.');
   document.getElementById('calName').value='';document.getElementById('calEmail').value='';document.getElementById('calType').value='';
   if(document.getElementById('calMsg2'))document.getElementById('calMsg2').value='';
@@ -726,13 +733,20 @@ async function bookMeeting(){
 async function sendForm(){
   const n=document.getElementById('fn').value.trim(),em=document.getElementById('fe').value.trim(),ph=document.getElementById('fp').value.trim(),sv=document.getElementById('fv').value,msg=document.getElementById('fm').value.trim();
   const st=document.getElementById('fst'),btn=document.getElementById('sbtn'),es=LANG==='es';
+  // Honeypot: si un bot llenó el campo invisible, fingimos éxito y no enviamos nada
+  if(document.getElementById('fweb').value){st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong>':'<strong>Inquiry sent!</strong>');['fn','fe','fp','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('fv').value='';return;}
+  // Rate-limit: máximo 1 envío cada 45 segundos por navegador
+  const last=+(localStorage.getItem('ebf_last_send')||0);
+  if(Date.now()-last<45000){st.className='fst err';st.textContent='⚠ '+(es?'Ya enviaste una consulta hace poco. Espera un momento antes de enviar otra.':'You already sent a message recently. Please wait a moment before sending another.');return;}
   if(!n||!em||!msg||!sv){st.className='fst err';st.textContent='⚠ '+(es?'Completa todos los campos marcados con *.':'Fill all required fields.');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){st.className='fst err';st.textContent='⚠ '+(es?'Correo electrónico inválido.':'Invalid email address.');return;}
+  if(ph&&!/^[+\d][\d\s-]{6,17}$/.test(ph)){st.className='fst err';st.textContent='⚠ '+(es?'Teléfono inválido. Usa solo números, espacios y +.':'Invalid phone. Use only numbers, spaces and +.');return;}
   btn.disabled=true;btn.innerHTML=es?'ENVIANDO...':'SENDING...';st.className='fst';st.style.display='none';
   const fecha=new Date().toLocaleString('es-CL',{timeZone:'America/Santiago'});
   const payload={nombre:n,correo:em,telefono:ph||'No indicado',servicio:sv,consulta:msg,fecha:fecha,tipo:'contacto'};
   // Guardar en Sheet + enviar correos (todo vía Make)
   await postData(SCRIPT,payload);
+  localStorage.setItem('ebf_last_send',Date.now());
   st.className='fst ok';st.innerHTML='✓ '+(es?'<strong>¡Consulta enviada!</strong> Te contactamos en menos de 24 hrs. Revisa tu correo.':'<strong>Inquiry sent!</strong> We will contact you within 24 hours. Check your email.');
   ['fn','fe','fp','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('fv').value='';
   btn.disabled=false;btn.innerHTML=es?'ENVIAR CONSULTA →':'SEND INQUIRY →';
