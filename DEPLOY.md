@@ -10,30 +10,30 @@
 | `robots.txt` | Para crawlers |
 | `404.html` | Página de error personalizada |
 
-## Deploy en Cloudflare Pages
-1. `dash.cloudflare.com` → Workers & Pages → tu proyecto
-2. Deployments → Upload assets
-3. Arrastra los archivos al root
-4. Deploy site → listo en ~30 segundos
+## Arquitectura actual (agosto 2026)
 
-## Conectar GitHub a Cloudflare (deploy automático)
-1. En Cloudflare Pages → Settings → Builds & deployments
-2. Connect to Git → selecciona `edbascunan/pagina-web-2026`
-3. Branch: `main` | Build command: (vacío) | Output: (vacío)
-4. Cada `git push` dispara un deploy automático sin tocar Cloudflare
+**Hosting:** Cloudflare Workers (Static Assets) — proyecto `paginaweb-ebf-2026`
+**Dominio:** ebf.cl (Custom Domain, único — sin rutas duplicadas)
+**Deploy:** automático en cada `git push` a `main` (Workers Builds conectado a GitHub)
+**Backend del formulario:** 100% Make.com — sin Google Apps Script, sin EmailJS, sin n8n
 
-## Google Apps Script — Pasos para reparar formularios
-1. Ir a script.google.com → abrir el proyecto EBF
-2. Reemplazar todo el código con el contenido de `google_apps_script.js`
-3. Pegar el ID de tu Google Sheet en `SHEET_ID` (línea 5)
-4. Implementar → Nueva implementación → Aplicación web
-   - Ejecutar como: **Yo**
-   - Acceso: **Cualquier persona**
-5. Copiar la nueva URL (empieza con `https://script.google.com/macros/s/...`)
-6. En `index.html` línea ~580: reemplazar `const SCRIPT='...'` con la nueva URL
+## Deploy en Cloudflare Workers
+El deploy es automático: cualquier `git push origin main` dispara un build nuevo en Cloudflare (Workers Builds). No requiere subir archivos a mano.
 
-## n8n — Verificar webhooks activos
-1. Ir a edbascunan.app.n8n.cloud
-2. Workflows → EBF Contacto → asegurarse que esté **Active** (no Test)
-3. Workflows → EBF Agenda Reserva → mismo check
-4. Si dice "Inactive": clic en el toggle → Activate
+Para verificar que el deploy está al día:
+1. `dash.cloudflare.com` → Workers & Pages → `paginaweb-ebf-2026` → pestaña **Deployments**
+2. El commit más reciente debe coincidir con el último commit de `main` en GitHub
+3. Pestaña **Dominios** → debe haber **solo una** entrada para `ebf.cl` (Entorno: Producción). Si aparece también una fila de tipo "Ruta" (`*.ebf.cl/*`), eliminarla — genera conflictos de versión.
+
+## Formulario de contacto — Make.com
+El escenario "Integration Webhooks, Gmail" (Make, scenario ID 6038342) recibe el POST del formulario vía webhook y:
+1. Escribe una fila en Google Sheets (pestaña "Contactos")
+2. Envía correo de notificación
+3. Envía correo de confirmación al cliente
+
+La URL del webhook está hardcodeada en `index.html` en la constante `SCRIPT`. Si se regenera el webhook en Make, hay que actualizar esa constante y hacer commit.
+
+Para revisar el estado del escenario o sus ejecuciones: `us2.make.com` → Scenarios → "Integration Webhooks, Gmail".
+
+## Visor 3D — Autodesk A360
+Los links de cada proyecto (`a360Link` en `index.html`) deben ser el link de tipo **Embed** (Compartir → pestaña Embed), no el link de compartir estándar — solo el de Embed permite incrustar el visor interactivo dentro de la página.

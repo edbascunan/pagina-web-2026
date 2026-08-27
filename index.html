@@ -818,28 +818,12 @@ function trackWA(source){
 }
 async function postData(url,data){
   const body=JSON.stringify(data);
-  // Google Apps Script: GET con params (evita CORS preflight)
-  if(url.includes('script.google.com')){
-    try{
-      await fetch(url+'?data='+encodeURIComponent(body),{method:'GET',mode:'no-cors'});
-      return true;
-    }catch(e){}
-  }
-  // Make.com: acepta POST JSON con CORS abierto
-  if(url.includes('.make.com')){
-    try{
-      await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:body});
-      return true;
-    }catch(e){
-      // fallback no-cors
-      try{await fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:body});return true;}catch(e2){}
-    }
-  }
-  // Genérico no-cors
   try{
-    await fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:body});
+    await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:body});
     return true;
-  }catch(e){}
+  }catch(e){
+    try{await fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:body});return true;}catch(e2){}
+  }
   return false;
 }
 async function bookMeeting(){
