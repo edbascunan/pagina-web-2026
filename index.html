@@ -278,7 +278,7 @@ h2.sh .r{color:var(--R)}
 .tm-bg{background:var(--K2);border-top:1px solid rgba(192,32,30,.1)}
 .about-bg{background:var(--K);border-top:1px solid rgba(192,32,30,.1)}
 .about-wrap{display:grid;grid-template-columns:240px 1fr;gap:3.5rem;align-items:start;margin-top:1rem}
-.about-photo-ph{width:240px;height:240px;border-radius:50%;background:linear-gradient(135deg,var(--R),#7a1412);display:flex;align-items:center;justify-content:center;font-family:var(--F);font-size:4.5rem;color:var(--W);letter-spacing:.05em}
+.about-photo-ph{width:240px;height:240px;border-radius:50%;object-fit:cover;border:3px solid var(--R);box-shadow:0 0 0 6px rgba(192,32,30,.12)}
 .about-role{font-family:var(--M);font-size:.68rem;letter-spacing:.14em;color:var(--R);text-transform:uppercase;margin:.5rem 0 1.5rem}
 .about-text{color:var(--W2);font-weight:300;font-size:.92rem;line-height:1.85;margin-bottom:1.1rem;max-width:680px}
 .about-badges{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem}
@@ -286,7 +286,7 @@ h2.sh .r{color:var(--R)}
 .ab-t{display:block;font-family:var(--F);font-size:1.1rem;color:var(--R);letter-spacing:.03em;margin-bottom:.35rem}
 .ab-d{display:block;font-size:.66rem;color:var(--W3);line-height:1.5}
 @media(max-width:1100px){.about-wrap{grid-template-columns:1fr;justify-items:center;text-align:center}.about-text{max-width:100%}.about-badges{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){.about-photo-ph{width:160px;height:160px;font-size:3rem}.about-badges{grid-template-columns:1fr}}
+@media(max-width:700px){.about-photo-ph{width:160px;height:160px}.about-badges{grid-template-columns:1fr}}
 .tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
 .tm-card{background:rgba(8,8,8,.8);border:1px solid rgba(192,32,30,.12);padding:2rem;position:relative;transition:border-color .3s}
 .tm-card:hover{border-color:rgba(192,32,30,.35)}
@@ -518,7 +518,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="esi on">Quién está detrás de EBF</span><span class="eni">Who's behind EBF</span></span></div>
   <div class="about-wrap">
     <div class="about-photo">
-      <div class="about-photo-ph">EB</div>
+      <img class="about-photo-ph" src="/foto-edgard.png" alt="Edgard Bascuñán, Ingeniero Constructor y fundador de EBF Servicios" loading="lazy">
     </div>
     <div class="about-content">
       <h2 class="sh"><span class="esi on">EDGARD BASCUÑÁN</span><span class="eni">EDGARD BASCUÑÁN</span></h2>
