@@ -275,6 +275,17 @@ h2.sh .r{color:var(--R)}
 .bp-c.br{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px}
 /* TESTIMONIOS */
 .tm-bg{background:var(--K2);border-top:1px solid rgba(192,32,30,.1)}
+.about-bg{background:var(--K);border-top:1px solid rgba(192,32,30,.1)}
+.about-wrap{display:grid;grid-template-columns:240px 1fr;gap:3.5rem;align-items:start;margin-top:1rem}
+.about-photo-ph{width:240px;height:240px;border-radius:50%;background:linear-gradient(135deg,var(--R),#7a1412);display:flex;align-items:center;justify-content:center;font-family:var(--F);font-size:4.5rem;color:var(--W);letter-spacing:.05em}
+.about-role{font-family:var(--M);font-size:.68rem;letter-spacing:.14em;color:var(--R);text-transform:uppercase;margin:.5rem 0 1.5rem}
+.about-text{color:var(--W2);font-weight:300;font-size:.92rem;line-height:1.85;margin-bottom:1.1rem;max-width:680px}
+.about-badges{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem}
+.about-badge{background:rgba(255,255,255,.03);border:1px solid rgba(192,32,30,.2);padding:1rem .9rem;text-align:center}
+.ab-t{display:block;font-family:var(--F);font-size:1.1rem;color:var(--R);letter-spacing:.03em;margin-bottom:.35rem}
+.ab-d{display:block;font-size:.66rem;color:var(--W3);line-height:1.5}
+@media(max-width:1100px){.about-wrap{grid-template-columns:1fr;justify-items:center;text-align:center}.about-text{max-width:100%}.about-badges{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.about-photo-ph{width:160px;height:160px;font-size:3rem}.about-badges{grid-template-columns:1fr}}
 .tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
 .tm-card{background:rgba(8,8,8,.8);border:1px solid rgba(192,32,30,.12);padding:2rem;position:relative;transition:border-color .3s}
 .tm-card:hover{border-color:rgba(192,32,30,.35)}
@@ -396,6 +407,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   <ul class="nav-links" id="navLinks">
     <li><a onclick="go('servicios');closeMenu()"><span class="esi on">Servicios</span><span class="eni">Services</span></a></li>
     <li><a onclick="go('proyectos');closeMenu()"><span class="esi on">Proyectos</span><span class="eni">Projects</span></a></li>
+    <li><a onclick="go('nosotros');closeMenu()"><span class="esi on">Nosotros</span><span class="eni">About</span></a></li>
     <li><a onclick="go('calculadora');closeMenu()"><span class="esi on">Calculadora</span><span class="eni">Calculator</span></a></li>
     <li><a onclick="go('agendar');closeMenu()"><span class="esi on">Agendar</span><span class="eni">Schedule</span></a></li>
     <li><a onclick="go('contacto');closeMenu()"><span class="esi on">Contacto</span><span class="eni">Contact</span></a></li>
@@ -499,6 +511,33 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
     <span class="pj-count" id="pjCount">15 proyectos</span>
   </div>
   <div class="pj-grid" id="pjGrid"></div>
+</section>
+
+<section class="sec about-bg" id="nosotros">
+  <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="esi on">Quién está detrás de EBF</span><span class="eni">Who's behind EBF</span></span></div>
+  <div class="about-wrap">
+    <div class="about-photo">
+      <div class="about-photo-ph">EB</div>
+    </div>
+    <div class="about-content">
+      <h2 class="sh"><span class="esi on">EDGARD BASCUÑÁN</span><span class="eni">EDGARD BASCUÑÁN</span></h2>
+      <div class="about-role"><span class="esi on">Fundador de EBF Servicios · Ingeniero Constructor</span><span class="eni">Founder of EBF Servicios · Construction Engineer</span></div>
+      <p class="about-text">
+        <span class="esi on">Ingeniero Constructor titulado en la Universidad Andrés Bello, con más de 10 años de experiencia en estudio de proyectos, oficina técnica y gestión de obras industriales, comerciales, habitacionales y educacionales en Chile. Ha sido jefe de estudio de proyectos y jefe de Oficina Técnica y Control de Calidad en constructoras como Novatec y Teyco, liderando la adjudicación y entrega de decenas de proyectos de licitación.</span>
+        <span class="eni">Construction Engineer graduated from Universidad Andrés Bello, with over 10 years of experience in project studies, technical offices, and construction management for industrial, commercial, residential and educational projects across Chile. He has served as project study lead and technical office manager at firms like Novatec and Teyco, leading the bidding and delivery of dozens of tender projects.</span>
+      </p>
+      <p class="about-text">
+        <span class="esi on">Se especializó en BIM con un Máster Internacional en BIM Management en Infraestructura e Ingeniería Civil (EADIC / Universidad Católica San Antonio de Murcia, 2024) y un Diplomado en Modelación BIM (Universidad Autónoma de Chile, 2021). Fue también docente de Gestión de Costos y de Control y Planificación de Proyectos en la Universidad Andrés Bello.</span>
+        <span class="eni">He specialized in BIM with an International Master's in BIM Management for Infrastructure and Civil Engineering (EADIC / Catholic University San Antonio of Murcia, 2024) and a Diploma in BIM Modeling (Universidad Autónoma de Chile, 2021). He also taught Cost Management and Project Planning & Control at Universidad Andrés Bello.</span>
+      </p>
+      <div class="about-badges">
+        <div class="about-badge"><span class="ab-t">Autodesk</span><span class="ab-d">Authorized Training Center<br>Revit · Civil 3D · Navisworks · Infraworks</span></div>
+        <div class="about-badge"><span class="ab-t">Bentley</span><span class="ab-d">OpenRoads Designer<br>Certificate of Accomplishment</span></div>
+        <div class="about-badge"><span class="ab-t">EADIC · UCAM</span><span class="ab-d">Máster BIM Management<br>60 ECTS · Título propio</span></div>
+        <div class="about-badge"><span class="ab-t">PlanBIM</span><span class="ab-d">CORFO · BID<br>Metodología BIM</span></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- TESTIMONIOS -->
