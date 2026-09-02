@@ -614,7 +614,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
     <div class="calc-box">
       <div class="calc-row">
         <div class="fd">
-          <label><span class="es on">Tipo de proyecto</span><span class="en">Project type</span></label>
+          <label for="calcTipo"><span class="es on">Tipo de proyecto</span><span class="en">Project type</span></label>
           <select id="calcTipo" onchange="calcBIM()">
             <option value="habitacional" data-uf="0.35">Habitacional</option>
             <option value="comercial" data-uf="0.42">Comercial</option>
@@ -624,13 +624,13 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
           </select>
         </div>
         <div class="fd">
-          <label><span class="es on">Superficie aproximada (m²)</span><span class="en">Approx. area (m²)</span></label>
+          <label for="calcM2"><span class="es on">Superficie aproximada (m²)</span><span class="en">Approx. area (m²)</span></label>
           <input type="number" id="calcM2" value="1500" min="50" max="200000" oninput="calcBIM()">
         </div>
       </div>
       <div class="calc-row">
         <div class="fd">
-          <label><span class="es on">Nivel de detalle (LOD)</span><span class="en">Level of Detail (LOD)</span></label>
+          <label for="calcLod"><span class="es on">Nivel de detalle (LOD)</span><span class="en">Level of Detail (LOD)</span></label>
           <select id="calcLod" onchange="calcBIM()">
             <option value="1" data-mult="0.7">LOD 100–200 · Anteproyecto / Early design</option>
             <option value="2" data-mult="1" selected>LOD 300 · Proyecto ejecutivo / Construction docs</option>
@@ -638,7 +638,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
           </select>
         </div>
         <div class="fd">
-          <label><span class="es on">Servicios adicionales</span><span class="en">Additional services</span></label>
+          <label for="calcExtra"><span class="es on">Servicios adicionales</span><span class="en">Additional services</span></label>
           <select id="calcExtra" onchange="calcBIM()">
             <option value="0">— Solo modelado / Modeling only</option>
             <option value="0.25">+ Coordinación multidisciplinaria / Coordination</option>
@@ -673,11 +673,11 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
       <div class="cal-h"><span class="es on">SELECCIONA HORARIO</span><span class="en">SELECT A TIME</span></div>
       <div class="cal-s"><span class="esi on">REUNIÓN GRATUITA · 30 MIN · BIM CONSULTING</span><span class="eni">FREE MEETING · 30 MIN · BIM CONSULTING</span></div>
       <div class="slots" id="calSlots"></div>
-      <div class="fd"><label><span class="esi on">Nombre</span><span class="eni">Name</span></label><input type="text" id="calName" placeholder="Juan García"></div>
-      <div class="fd"><label>Email</label><input type="email" id="calEmail" placeholder="juan@empresa.com"></div>
-      <div class="fd" style="margin-bottom:1.2rem"><label><span class="esi on">Tipo de proyecto</span><span class="eni">Project type</span></label>
+      <div class="fd"><label for="calName"><span class="esi on">Nombre</span><span class="eni">Name</span></label><input type="text" id="calName" placeholder="Juan García"></div>
+      <div class="fd"><label for="calEmail">Email</label><input type="email" id="calEmail" placeholder="juan@empresa.com"></div>
+      <div class="fd" style="margin-bottom:1.2rem"><label for="calType"><span class="esi on">Tipo de proyecto</span><span class="eni">Project type</span></label>
         <select id="calType"><option value="">—</option><option>Modelado BIM</option><option>Coordinación BIM</option><option>Presupuesto & Cubicaciones</option><option>Gestión de Obra</option><option>Obra Civil / Infraestructura</option><option>Otro</option></select></div>
-      <div class="fd" style="margin-bottom:1.2rem"><label><span class="esi on">Cuéntanos tu proyecto (opcional)</span><span class="eni">Brief project description (optional)</span></label><textarea id="calMsg2" rows="2" placeholder="Ej: Edificio de 8 pisos, necesito modelado LOD 300..."></textarea></div>
+      <div class="fd" style="margin-bottom:1.2rem"><label for="calMsg2"><span class="esi on">Cuéntanos tu proyecto (opcional)</span><span class="eni">Brief project description (optional)</span></label><textarea id="calMsg2" rows="2" placeholder="Ej: Edificio de 8 pisos, necesito modelado LOD 300..."></textarea></div>
       <button class="sub-btn" onclick="bookMeeting()"><span class="esi on">CONFIRMAR REUNIÓN →</span><span class="eni">CONFIRM MEETING →</span></button>
       <div id="calMsg" style="margin-top:.8rem;font-family:var(--M);font-size:.65rem;text-align:center;min-height:1.2rem"></div>
     </div>
@@ -715,15 +715,15 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
       <div class="fw-t"><span class="es on">SOLICITAR CONSULTA</span><span class="en">REQUEST CONSULTATION</span></div>
       <div class="fw-s"><span class="esi on">RESPUESTA EN 24 HRS · PRIMERA REUNIÓN SIN COSTO</span><span class="eni">24HR RESPONSE · FIRST MEETING FREE</span></div>
       <div class="fr2">
-        <div class="fd"><label><span class="esi on">Nombre *</span><span class="eni">Name *</span></label><input type="text" id="fn" placeholder="Juan García"></div>
-        <div class="fd"><label>Email *</label><input type="email" id="fe" placeholder="juan@empresa.com"></div>
+        <div class="fd"><label for="fn"><span class="esi on">Nombre *</span><span class="eni">Name *</span></label><input type="text" id="fn" placeholder="Juan García"></div>
+        <div class="fd"><label for="fe">Email *</label><input type="email" id="fe" placeholder="juan@empresa.com"></div>
       </div>
       <div class="fr2">
-        <div class="fd"><label><span class="esi on">Teléfono</span><span class="eni">Phone</span></label><input type="tel" id="fp" placeholder="+56 9..."></div>
-        <div class="fd"><label><span class="esi on">Servicio *</span><span class="eni">Service *</span></label>
+        <div class="fd"><label for="fp"><span class="esi on">Teléfono</span><span class="eni">Phone</span></label><input type="tel" id="fp" placeholder="+56 9..."></div>
+        <div class="fd"><label for="fv"><span class="esi on">Servicio *</span><span class="eni">Service *</span></label>
           <select id="fv"><option value="">—</option><option>Modelado BIM</option><option>Coordinación BIM</option><option>Presupuesto & Cubicaciones</option><option>Gestión de Obra (ITO)</option><option>Infraestructura & Civil</option><option>Visualización A360</option><option>Otro</option></select></div>
       </div>
-      <div class="fd"><label><span class="esi on">Descripción del proyecto *</span><span class="eni">Project description *</span></label><textarea id="fm" rows="4" placeholder="Cuéntanos sobre tu proyecto..."></textarea></div>
+      <div class="fd"><label for="fm"><span class="esi on">Descripción del proyecto *</span><span class="eni">Project description *</span></label><textarea id="fm" rows="4" placeholder="Cuéntanos sobre tu proyecto..."></textarea></div>
       <input type="text" id="fweb" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
       <button class="sub-btn" id="sbtn" onclick="sendForm()"><span class="esi on">ENVIAR CONSULTA →</span><span class="eni">SEND INQUIRY →</span></button>
       <div class="fst" id="fst"></div>
