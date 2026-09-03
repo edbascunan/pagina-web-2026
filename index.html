@@ -77,7 +77,7 @@ src="https://www.facebook.com/tr?id=1415377910454327&ev=PageView&noscript=1"
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--R:#C0201E;--Rl:#E8302E;--K:#080808;--K2:#111111;--K3:#1A1A1A;--W:#F0EBE3;--W2:#9E9690;--W3:#5A5550;--F:'Bebas Neue',sans-serif;--B:'DM Sans',sans-serif;--M:'Space Mono',monospace}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100vw}
 body{background:var(--K);color:var(--W);font-family:var(--B);overflow-x:hidden}
 
 .scroll-bar{position:fixed;top:0;left:0;height:3px;background:var(--R);width:0%;z-index:9999;transition:width .1s linear}
@@ -98,7 +98,7 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.98)}
 .wa-nav:hover{background:#1da851}
 .wa-svg{width:15px;height:15px;fill:white;flex-shrink:0}
 .hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden}
-.hero-l{display:flex;flex-direction:column;justify-content:center;padding:9rem 3rem 5rem;position:relative;z-index:2}
+.hero-l{display:flex;flex-direction:column;justify-content:center;padding:9rem 3rem 5rem;position:relative;z-index:2;max-width:100%;min-width:0}
 .hero-r{position:relative;overflow:hidden}
 .hero-r-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=80');background-size:cover;background-position:center;filter:brightness(.22) saturate(.4)}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(192,32,30,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(192,32,30,.07) 1px,transparent 1px);background-size:52px 52px;animation:gp 22s linear infinite;z-index:1}
@@ -120,16 +120,16 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.98)}
 .ch-corner.br{bottom:0;right:0;border-bottom-width:1.5px;border-right-width:1.5px}
 .ch-txt{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);font-family:var(--M);font-size:.48rem;letter-spacing:.3em;color:rgba(192,32,30,.7);white-space:nowrap}
 @keyframes spin{to{transform:rotate(360deg)}}
-.eyebrow{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem}
+.eyebrow{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem;min-width:0;max-width:100%}
 .ey-line{width:36px;height:1px;background:var(--R)}
-.ey-txt{font-family:var(--M);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--R)}
+.ey-txt{font-family:var(--M);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--R);min-width:0}
 .ey-dot{width:5px;height:5px;background:var(--R);border-radius:50%;animation:blink 1.6s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 h1.hero-h{font-family:var(--F);font-size:clamp(4.5rem,8vw,7.8rem);line-height:.88;letter-spacing:.01em;margin-bottom:2rem}
 h1.hero-h .r{color:var(--R)}
 h1.hero-h .d{color:var(--W2)}
 .hero-sub{border-left:2px solid var(--R);padding-left:1.2rem;color:var(--W2);font-size:.95rem;font-weight:300;line-height:1.9;max-width:480px;margin-bottom:2.5rem}
-.ctas{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+.ctas{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;min-width:0;max-width:100%}
 .btn-p{background:var(--R);color:var(--W);padding:1rem 2.2rem;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-family:var(--B);font-weight:600;cursor:pointer;border:none;transition:all .25s;position:relative;overflow:hidden}
 .btn-p::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-101%);transition:transform .3s}
 .btn-p:hover::before{transform:translateX(0)}
@@ -392,6 +392,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   .nav-burger{display:flex}
   .pj-grid{grid-template-columns:1fr}.fr2,.slots{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}.flinks{justify-content:center;flex-wrap:wrap}.tm-grid,.bl-grid{grid-template-columns:1fr}
   h1.hero-h{font-size:clamp(2.6rem,11vw,4.5rem)}
+  .ey-txt{letter-spacing:.14em;font-size:.5rem}
   h2.sh{font-size:clamp(2rem,8vw,3rem)}
   .pj-panel-btns{flex-wrap:wrap}
   section.sec{padding:3.5rem 1.25rem}
