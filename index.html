@@ -786,7 +786,14 @@ function buildPanel(ap){
   const toggleMode=show3d?'info':'3d';
   const has3d=ap.a360Link&&ap.a360Link!=='default';
   let viewer;
-  if(show3d){viewer='<div class="pj-panel-viewer"><iframe src="'+ap.a360Link+'" allow="fullscreen;accelerometer;autoplay;camera;gyroscope;microphone;xr-spatial-tracking" allowfullscreen referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation allow-top-navigation-by-user-activation allow-orientation-lock"></iframe></div>';}
+  if(show3d){
+    if(window.innerWidth>900){
+      viewer='<div class="pj-panel-viewer"><iframe src="'+ap.a360Link+'" allow="fullscreen;accelerometer;autoplay;camera;gyroscope;microphone;xr-spatial-tracking" allowfullscreen referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation allow-top-navigation-by-user-activation allow-orientation-lock"></iframe></div>';
+    }else{
+      const bg=(ap.images&&ap.images[0])?"background-image:url('"+ap.images[0]+"')":'';
+      viewer='<div class="pj-panel-viewer"><div class="pj-panel-3d" style="'+bg+'"><p style="font-size:2.5rem">📱</p><p>El visor 3D interactivo no carga dentro de la página en navegadores móviles (limitación de memoria del propio navegador) — ábrelo directo para navegar el modelo.</p><a class="btn-3d" href="'+ap.a360Link+'" target="_blank" rel="noopener">Abrir Modelo 3D en A360 ↗</a></div></div>';
+    }
+  }
   else{const extraBtn=has3d?'<button class="btn-3d" onclick="openPanel('+ACTIVE_PJ+',\'3d\',event)" style="margin-top:.5rem">Ver Modelo 3D en A360</button>':'';viewer='<div class="pj-panel-viewer"><div class="pj-panel-no3d"><p style="font-size:2.5rem">📋</p><p>'+(ap.serviceDescription||ap.description)+'</p>'+extraBtn+'</div></div>';}
   const toggleBtn=has3d?'<button class="btn-3d" onclick="openPanel('+ACTIVE_PJ+',\''+toggleMode+'\',event)">'+toggleLabel+'</button>':'';
   const waMsg=encodeURIComponent('Hola EBF, vi el proyecto "'+ap.title+'" y me interesa algo similar para mi proyecto.');
