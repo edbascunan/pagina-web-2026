@@ -399,6 +399,10 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   .lb{padding:.5rem .8rem;font-size:.72rem}
 }
 </style>
+<script>
+/* Auto-recuperacion de imagenes: si una imagen externa falla, reintenta sin referrer y con cache-buster (2 intentos) */
+document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!=='IMG'||!/postimg\.cc/.test(t.src))return;var n=+(t.getAttribute('data-retry')||0);if(n>=2)return;t.setAttribute('data-retry',n+1);t.referrerPolicy='no-referrer';var b=t.src.split('?')[0];setTimeout(function(){t.src=b+'?r='+Date.now()},700*(n+1))},true);
+</script>
 </head>
 
 <body>
