@@ -189,6 +189,19 @@ h1.hero-h .d{color:var(--W2)}
 .mv-vals{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
 .mv-val span{display:inline-block;border:1px solid rgba(192,32,30,.4);padding:.5rem 1rem;font-family:var(--M);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--W)}
 @media(max-width:900px){section.sec.mv-bg{padding:4rem 1.2rem}.mv-grid{grid-template-columns:1fr}}
+.ck-bg{background:var(--K);border-top:1px solid rgba(192,32,30,.1)}
+.ck-box{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;align-items:center;border:1px solid rgba(192,32,30,.3);background:var(--K2);padding:2.5rem}
+.ck-box ul{list-style:none;margin:1rem 0 0;padding:0;color:var(--W2);font-size:.9rem;font-weight:300;line-height:1.9}
+.ck-box li{display:flex;align-items:center;gap:.7rem}
+.ck-box li:before{content:'';flex:0 0 .55rem;height:.55rem;border:1px solid var(--R)}
+.ck-f{display:flex;flex-direction:column;gap:.8rem}
+.ck-f input{background:var(--K);border:1px solid rgba(240,235,227,.18);color:var(--W);padding:.9rem 1rem;font-size:.9rem;font-family:inherit;min-height:44px}
+.ck-f input:focus{outline:2px solid var(--R);outline-offset:1px}
+.ck-f button{background:var(--R);color:#fff;border:0;padding:1rem;font-family:var(--M);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;min-height:48px}
+.ck-st{font-size:.82rem;min-height:1.2rem}
+.ck-st a{color:var(--R);font-weight:600}
+@media(max-width:900px){section.sec.ck-bg{padding:4rem 1.2rem}.ck-box{grid-template-columns:1fr;padding:1.5rem}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 section.sec{padding:7rem 3rem}
 .stag{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
 .stag-l{width:30px;height:1px;background:var(--R)}
@@ -741,6 +754,25 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
   </div>
 </section>
 
+<section class="sec ck-bg" id="checklist">
+  <div class="ck-box">
+    <div>
+      <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="es on">Descarga gratis</span><span class="en">Free download</span></span></div>
+      <h2 class="sh"><span class="es on">CHECKLIST DE CUBICACIÓN<br><span class="r">PARA LICITAR</span></span><span class="en">TAKE-OFF CHECKLIST<br><span class="r">FOR BIDDING</span></span></h2>
+      <p class="intro" style="margin-bottom:0"><span class="es on">25 puntos para revisar tus cantidades, precios y documentos antes de entregar la oferta. PDF de 2 páginas.</span><span class="en">25 points to check your quantities, prices and documents before submitting your bid. 2-page PDF.</span></p>
+      <ul><li><span class="es on">Antecedentes y alcance</span><span class="en">Documents and scope</span></li><li><span class="es on">Cantidades</span><span class="en">Quantities</span></li><li><span class="es on">Precios y APU</span><span class="en">Prices and unit price analysis</span></li><li><span class="es on">Gastos generales, programa y cierre</span><span class="en">Overheads, schedule and closing</span></li></ul>
+    </div>
+    <form class="ck-f" id="ckForm" onsubmit="return sendChecklist(event)" novalidate>
+      <label for="ckN" class="sr-only">Nombre</label><input id="ckN" type="text" placeholder="Nombre" autocomplete="name" required>
+      <label for="ckE" class="sr-only">Correo</label><input id="ckE" type="email" placeholder="Correo de trabajo" autocomplete="email" required>
+      <label for="ckC" class="sr-only">Empresa</label><input id="ckC" type="text" placeholder="Empresa" autocomplete="organization">
+      <input id="ckW" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;min-height:0;padding:0;border:0">
+      <button type="submit"><span class="es on">Descargar checklist gratis</span><span class="en">Download free checklist</span></button>
+      <div class="ck-st" id="ckSt" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
 <section class="sec ag-bg" id="agendar">
   <div class="ag-wrap">
     <div>
@@ -960,6 +992,24 @@ function trackWA(source){
     if(window.gtag)gtag('event','contact',{method:'whatsapp',source:source||''});
     if(window.fbq)fbq('track','Contact',{content_name:source||'whatsapp'});
   }catch(e){}
+}
+async function sendChecklist(e){
+  e.preventDefault();
+  const st=document.getElementById('ckSt');const es=document.documentElement.lang!=='en';
+  const n=document.getElementById('ckN').value.trim(),em=document.getElementById('ckE').value.trim(),co=document.getElementById('ckC').value.trim();
+  if(document.getElementById('ckW').value){return false;}
+  if(!n||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){st.style.color='#dc2626';st.textContent=es?'Ingresa tu nombre y un correo válido.':'Enter your name and a valid email.';return false;}
+  const last=+localStorage.getItem('ebf_ck_last')||0;
+  st.style.color='';st.textContent=es?'Enviando…':'Sending…';
+  const fecha=new Date().toLocaleString('es-CL');
+  await postData(SCRIPT,{nombre:n,correo:em,telefono:'No indicado',servicio:'Descarga checklist de cubicación',consulta:'Descarga de checklist. Empresa: '+(co||'No indicada'),fecha:fecha,tipo:'contacto'});
+  try{localStorage.setItem('ebf_ck_last',Date.now())}catch(_){}
+  try{trackLead('checklist','Checklist cubicación')}catch(_){}
+  try{gtag('event','download_checklist')}catch(_){}
+  st.style.color='#16a34a';
+  st.innerHTML='✓ '+(es?'¡Listo! <a href="/checklist-cubicacion-licitacion-ebf.pdf" download target="_blank" rel="noopener">Descargar el PDF</a>':'Done! <a href="/checklist-cubicacion-licitacion-ebf.pdf" download target="_blank" rel="noopener">Download the PDF</a>');
+  window.open('/checklist-cubicacion-licitacion-ebf.pdf','_blank');
+  return false;
 }
 async function postData(url,data){
   const body=JSON.stringify(data);
