@@ -89,7 +89,7 @@ body{background:var(--K);color:var(--W);font-family:var(--B);overflow-x:hidden}
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;backdrop-filter:blur(20px);background:rgba(8,8,8,.9);border-bottom:1px solid rgba(192,32,30,.12);transition:padding .3s}
 nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.98)}
 .logo{font-family:var(--F);font-size:1.9rem;letter-spacing:.1em;cursor:pointer;line-height:1}
-.logo sub{display:block;font-family:var(--M);font-size:.34rem;letter-spacing:.38em;color:var(--R);margin-top:-6px}
+.logo sub{display:block;font-family:var(--M);font-size:.46rem;letter-spacing:.3em;color:var(--R);margin-top:-6px}
 .logo span{color:var(--R)}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{color:var(--W2);text-decoration:none;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;position:relative;transition:color .2s;padding-bottom:2px}
@@ -433,7 +433,7 @@ h2.sh .r{color:var(--R)}
 .wa-btn:hover{transform:scale(1.1)}
 .wa-notif{position:absolute;top:-3px;right:-3px;width:18px;height:18px;background:var(--R);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:700}
 footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.fl{font-family:var(--F);font-size:1.5rem;letter-spacing:.1em}.fl span{color:var(--R)}
+.fl{font-family:var(--F);font-size:1.5rem;letter-spacing:.1em;display:flex;align-items:center;gap:.7rem}.fl .logo-iso{height:1.6rem}.fl span{color:var(--R)}
 .flinks{display:flex;gap:2rem}.flinks a{color:var(--W3);text-decoration:none;font-family:var(--M);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;cursor:pointer}.flinks a:hover{color:var(--R)}
 .fc2{font-family:var(--M);color:var(--W3);font-size:.6rem}
 .es,.en{display:none}.es.on,.en.on{display:block}
@@ -863,7 +863,7 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
 </section>
 
 <footer>
-  <div class="fl">EBF<span>.</span> SERVICIOS</div>
+  <div class="fl"><svg class="logo-iso" viewBox="0 0 76 86" aria-hidden="true"><rect width="16" height="86" fill="#F4F4F2"/><rect width="76" height="16" fill="#F4F4F2"/><rect y="35" width="56" height="16" fill="#D7263D"/><rect y="70" width="76" height="16" fill="#F4F4F2"/></svg><span>EBF<span>.</span> SERVICIOS</span></div>
   <div class="flinks">
     <a onclick="go('servicios')"><span class="esi on">Servicios</span><span class="eni">Services</span></a>
     <a onclick="go('proceso')"><span class="esi on">Proceso</span><span class="eni">Process</span></a>
