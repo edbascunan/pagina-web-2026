@@ -152,6 +152,17 @@ h1.hero-h .d{color:var(--W2)}
 .tk-track{display:flex;gap:2.5rem;animation:tk 20s linear infinite;width:max-content}
 .tk-item{font-family:var(--M);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,227,.9);white-space:nowrap}
 @keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.pr-bg{background:var(--K);border-top:1px solid rgba(192,32,30,.1)}
+.pr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.5rem 0 2rem}
+.pr-card{background:var(--K2);border:1px solid rgba(192,32,30,.14);padding:1.6rem 1.4rem;position:relative}
+.pr-n{font-family:var(--F);font-size:2.6rem;color:var(--R);line-height:1;margin-bottom:.4rem}
+.pr-t{font-family:var(--F);font-size:1.3rem;letter-spacing:.04em;margin-bottom:.5rem}
+.pr-d{color:var(--W2);font-weight:300;font-size:.85rem;line-height:1.7}
+.pr-note{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.pr-note div{border-left:2px solid var(--R);padding:.3rem 0 .3rem 1rem;color:var(--W2);font-size:.85rem;font-weight:300;line-height:1.7}
+.pr-note strong{display:block;color:var(--W);font-weight:600;font-size:.8rem;letter-spacing:.06em;margin-bottom:.2rem}
+@media(max-width:900px){section.sec.pr-bg{padding:4rem 1.2rem}.pr-grid{grid-template-columns:1fr 1fr}.pr-note{grid-template-columns:1fr}}
+@media(max-width:520px){.pr-grid{grid-template-columns:1fr}}
 section.sec{padding:7rem 3rem}
 .stag{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
 .stag-l{width:30px;height:1px;background:var(--R)}
@@ -513,6 +524,18 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
   </div>
 </section>
 
+<section class="sec pr-bg" id="proceso">
+  <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="es on">Cómo trabajamos</span><span class="en">How we work</span></span></div>
+  <h2 class="sh"><span class="es on">3 REVISIONES.<br><span class="r">CERO SORPRESAS.</span></span><span class="en">3 REVIEW ROUNDS.<br><span class="r">NO SURPRISES.</span></span></h2>
+  <p class="intro"><span class="es on">Un proceso ordenado según el Estándar BIM para Proyectos Públicos y la ISO 19650: cada entrega pasa por tres revisiones, con archivos nombrados, versionados y trazables.</span><span class="en">An orderly process based on the Chilean Public Projects BIM Standard and ISO 19650: every delivery goes through three review rounds, with named, versioned and traceable files.</span></p>
+  <div class="pr-grid"><div class="pr-card"><div class="pr-n">1</div><div class="pr-t"><span class="es on">Brief y plan</span><span class="en">Brief y plan</span></div><p class="pr-d"><span class="es on">Revisamos tus antecedentes y te presentamos un plan de levantamiento. Tú lo firmas si estás de acuerdo.</span><span class="en">We review your documents and present an observation plan. You sign it if you agree.</span></p></div><div class="pr-card"><div class="pr-n">2</div><div class="pr-t"><span class="es on">Revisión 1 · Levantamiento</span><span class="en">Revisión 1 · Levantamiento</span></div><p class="pr-d"><span class="es on">Levantamos y registramos todas las observaciones del modelo y las cubicaciones, una por una.</span><span class="en">We identify and log every observation on the model and quantities, one by one.</span></p></div><div class="pr-card"><div class="pr-n">3</div><div class="pr-t"><span class="es on">Revisión 2 · Resolución</span><span class="en">Revisión 2 · Resolución</span></div><p class="pr-d"><span class="es on">Resolvemos cada observación y respondemos por escrito: resuelta, rechazada con fundamento o pendiente.</span><span class="en">We resolve each observation and answer in writing: resolved, rejected with grounds, or pending.</span></p></div><div class="pr-card"><div class="pr-n">4</div><div class="pr-t"><span class="es on">Revisión 3 · Afinamiento</span><span class="en">Revisión 3 · Afinamiento</span></div><p class="pr-d"><span class="es on">Afinamos las últimas observaciones, hacemos el control de calidad final y publicamos la entrega.</span><span class="en">We refine the last observations, run final quality control and publish the delivery.</span></p></div></div>
+  <div class="pr-note">
+    <div><strong><span class="es on">5 DÍAS HÁBILES</span><span class="en">5 BUSINESS DAYS</span></strong><span class="es on">por revisión, o el plazo que pactemos según la complejidad.</span><span class="en">per review round, or the term we agree on based on complexity.</span></div>
+    <div><strong><span class="es on">CONFIDENCIALIDAD</span><span class="en">CONFIDENTIALITY</span></strong><span class="es on">Firmamos un NDA con copia para ambas partes antes de recibir tus archivos.</span><span class="en">We sign an NDA with a copy for both parties before receiving your files.</span></div>
+    <div><strong><span class="es on">FORMATOS ABIERTOS</span><span class="en">OPEN FORMATS</span></strong><span class="es on">Entrega en RVT e IFC, comentarios en BCF y archivos compartidos en Google Drive.</span><span class="en">Delivery in RVT and IFC, comments in BCF and files shared on Google Drive.</span></div>
+  </div>
+</section>
+
 <section class="sec pj-bg" id="proyectos">
   <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="esi on">Historial real de trabajos</span><span class="eni">Real work portfolio</span></span></div>
   <h2 class="sh"><span class="es on">PROYEC<span class="r">TOS</span></span><span class="en">PROJ<span class="r">ECTS</span></span></h2>
@@ -697,7 +720,7 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
   </div>
 </section>
 
-<section class="sec wy-bg" id="nosotros">
+<section class="sec wy-bg" id="por-que-ebf">
   <div class="wy-grid">
     <div>
       <div class="stag"><div class="stag-l"></div><span class="stag-t"><span class="esi on">Por qué elegirnos</span><span class="eni">Why choose us</span></span></div>
@@ -748,6 +771,7 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
   <div class="fl">EBF<span>.</span> SERVICIOS</div>
   <div class="flinks">
     <a onclick="go('servicios')"><span class="esi on">Servicios</span><span class="eni">Services</span></a>
+    <a onclick="go('proceso')"><span class="esi on">Proceso</span><span class="eni">Process</span></a>
     <a onclick="go('proyectos')"><span class="esi on">Proyectos</span><span class="eni">Projects</span></a>
     <a onclick="go('nosotros')"><span class="esi on">Nosotros</span><span class="eni">About</span></a>
     <a onclick="go('calculadora')"><span class="esi on">Calculadora</span><span class="eni">Calculator</span></a>
