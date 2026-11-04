@@ -163,6 +163,20 @@ h1.hero-h .d{color:var(--W2)}
 .pr-note strong{display:block;color:var(--W);font-weight:600;font-size:.8rem;letter-spacing:.06em;margin-bottom:.2rem}
 @media(max-width:900px){section.sec.pr-bg{padding:4rem 1.2rem}.pr-grid{grid-template-columns:1fr 1fr}.pr-note{grid-template-columns:1fr}}
 @media(max-width:520px){.pr-grid{grid-template-columns:1fr}}
+.pz-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:2.5rem 0 0}
+.pz-card{border:1px solid rgba(192,32,30,.3);background:rgba(192,32,30,.06);padding:1.4rem 1.6rem}
+.pz-v{font-family:var(--F);font-size:2.2rem;color:var(--W);line-height:1}
+.pz-v small{font-size:1rem;color:var(--R);letter-spacing:.08em;margin-left:.4rem}
+.pz-d{color:var(--W2);font-weight:300;font-size:.85rem;margin-top:.4rem;line-height:1.7}
+.cs-h{font-family:var(--F);font-size:1.8rem;margin:3rem 0 1rem}
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.cs-card{background:var(--K2);border:1px solid rgba(240,235,227,.08);padding:1.3rem}
+.cs-k{font-family:var(--M);font-size:.52rem;letter-spacing:.2em;color:var(--R);text-transform:uppercase;margin-bottom:.5rem}
+.cs-t{font-family:var(--F);font-size:1.15rem;margin-bottom:.5rem;line-height:1.15}
+.cs-d{color:var(--W2);font-weight:300;font-size:.8rem;line-height:1.7}
+.cs-more{display:inline-block;margin-top:1.2rem;color:var(--R);font-family:var(--M);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+@media(max-width:900px){.pz-grid{grid-template-columns:1fr}.cs-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cs-grid{grid-template-columns:1fr}}
 section.sec{padding:7rem 3rem}
 .stag{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
 .stag-l{width:30px;height:1px;background:var(--R)}
@@ -534,6 +548,18 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
     <div><strong><span class="es on">CONFIDENCIALIDAD</span><span class="en">CONFIDENTIALITY</span></strong><span class="es on">Firmamos un NDA con copia para ambas partes antes de recibir tus archivos.</span><span class="en">We sign an NDA with a copy for both parties before receiving your files.</span></div>
     <div><strong><span class="es on">FORMATOS ABIERTOS</span><span class="en">OPEN FORMATS</span></strong><span class="es on">Entrega en RVT e IFC, comentarios en BCF y archivos compartidos en Google Drive.</span><span class="en">Delivery in RVT and IFC, comments in BCF and files shared on Google Drive.</span></div>
   </div>
+  <div class="pz-grid">
+    <div class="pz-card"><div class="pz-v">2–3<small><span class="es on">SEMANAS</span><span class="en">WEEKS</span></small></div><div class="pz-d"><span class="es on">Modelado BIM: del brief a la entrega final, incluidas las 3 revisiones.</span><span class="en">BIM modeling: from brief to final delivery, including the 3 review rounds.</span></div></div>
+    <div class="pz-card"><div class="pz-v">4–6<small><span class="es on">SEMANAS</span><span class="en">WEEKS</span></small></div><div class="pz-d"><span class="es on">Estudio y presupuesto de licitación (cubicación, APU y presupuesto). Aproximado: depende del tamaño y de los antecedentes disponibles.</span><span class="en">Tender study and budget (take-offs, unit prices and budget). Approximate: depends on size and available documents.</span></div></div>
+  </div>
+  <h3 class="cs-h"><span class="es on">Trabajos que ya hicimos</span><span class="en">Work we have delivered</span></h3>
+  <div class="cs-grid">
+    <div class="cs-card"><div class="cs-k"><span class="es on">Modelado BIM · Obras civiles</span><span class="en">BIM modeling · Civil works</span></div><div class="cs-t"><span class="es on">13 puentes de proyectos públicos</span><span class="en">13 public-project bridges</span></div><p class="cs-d"><span class="es on">Modelado de los 13 puentes con Revit, con nivel de detalle para licitación.</span><span class="en">Modeling of all 13 bridges in Revit, at a level of detail suited for tender.</span></p></div>
+    <div class="cs-card"><div class="cs-k"><span class="es on">Estudio completo · Educación</span><span class="en">Full study · Education</span></div><div class="cs-t">Colegio Batuco</div><p class="cs-d"><span class="es on">Estudio completo del proyecto con herramientas BIM, integrando arquitectura, estructura y especialidades.</span><span class="en">Full project study with BIM tools, integrating architecture, structure and MEP.</span></p></div>
+    <div class="cs-card"><div class="cs-k"><span class="es on">Multidisciplina · Infraestructura</span><span class="en">Multidiscipline · Infrastructure</span></div><div class="cs-t"><span class="es on">Estaciones de servicio</span><span class="en">Service stations</span></div><p class="cs-d"><span class="es on">Modelado BIM de arquitectura, sanitario, piping, climatización y eléctrico.</span><span class="en">BIM modeling of architecture, plumbing, piping, HVAC and electrical.</span></p></div>
+    <div class="cs-card"><div class="cs-k"><span class="es on">Presupuesto · Licitación</span><span class="en">Budget · Tender</span></div><div class="cs-t">Electroterminales</div><p class="cs-d"><span class="es on">Estudios de presupuesto y planificación para infraestructura eléctrica de alta complejidad.</span><span class="en">Budget and planning studies for high-complexity electrical infrastructure.</span></p></div>
+  </div>
+  <a class="cs-more" onclick="go('proyectos')"><span class="es on">Ver los 15 proyectos →</span><span class="en">See all 15 projects →</span></a>
 </section>
 
 <section class="sec pj-bg" id="proyectos">
