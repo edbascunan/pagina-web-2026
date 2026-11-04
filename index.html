@@ -202,6 +202,14 @@ h1.hero-h .d{color:var(--W2)}
 .ck-st a{color:var(--R);font-weight:600}
 @media(max-width:900px){section.sec.ck-bg{padding:4rem 1.2rem}.ck-box{grid-template-columns:1fr;padding:1.5rem}}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ai-bg{background:var(--K2);border-top:1px solid rgba(192,32,30,.1)}
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0 1.2rem}
+.ai-card{border:1px solid rgba(240,235,227,.1);background:var(--K);padding:1.6rem}
+.ai-t{font-family:var(--F);font-size:1.3rem;margin-bottom:.5rem}
+.ai-card p{color:var(--W2);font-weight:300;font-size:.88rem;line-height:1.75}
+.ai-tag{display:inline-block;margin-top:.8rem;font-family:var(--M);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--R);border:1px solid rgba(192,32,30,.4);padding:.25rem .6rem}
+.ai-note{border-left:2px solid var(--R);padding:.3rem 0 .3rem 1rem;color:var(--W2);font-size:.9rem;font-weight:300;line-height:1.7;max-width:760px}
+@media(max-width:900px){section.sec.ai-bg{padding:4rem 1.2rem}.ai-grid{grid-template-columns:1fr}}
 section.sec{padding:7rem 3rem}
 .stag{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
 .stag-l{width:30px;height:1px;background:var(--R)}
@@ -814,6 +822,13 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
     </div>
     <div class="wy-visual"><div class="bp"><div class="bp-lh"></div><div class="bp-lv"></div><div class="bp-c tl"></div><div class="bp-c tr"></div><div class="bp-c bl"></div><div class="bp-c br"></div><div class="bp-in">EBF</div></div></div>
   </div>
+</section>
+
+<section class="sec ai-bg" id="intelligence">
+  <div class="stag"><div class="stag-l"></div><span class="stag-t">EBF Intelligence</span></div>
+  <h2 class="sh"><span class="es on">INTELIGENCIA ARTIFICIAL<br><span class="r">AL SERVICIO DEL CRITERIO</span></span><span class="en">ARTIFICIAL INTELLIGENCE<br><span class="r">SERVING JUDGMENT</span></span></h2>
+  <div class="ai-grid"><div class="ai-card"><div class="ai-t"><span class="es on">Revisión asistida de entregables</span><span class="en">AI-assisted deliverable review</span></div><p><span class="es on">Asistentes de IA ayudan a revisar nomenclatura, consistencia de cantidades y observaciones antes de cada entrega.</span><span class="en">AI assistants help check naming, quantity consistency and observations before each delivery.</span></p><span class="ai-tag"><span class="es on">En uso</span><span class="en">In use</span></span></div><div class="ai-card"><div class="ai-t"><span class="es on">Automatización BIM</span><span class="en">BIM automation</span></div><p><span class="es on">Estamos desarrollando automatizaciones para tareas repetitivas de modelado y verificación en Revit, conectadas mediante MCP.</span><span class="en">We are developing automations for repetitive modeling and verification tasks in Revit, connected through MCP.</span></p><span class="ai-tag"><span class="es on">En desarrollo</span><span class="en">In development</span></span></div><div class="ai-card"><div class="ai-t"><span class="es on">Seguimiento comercial</span><span class="en">Sales follow-up</span></div><p><span class="es on">Asistentes digitales ordenan consultas, propuestas y seguimiento para responder en menos de 24 horas.</span><span class="en">Digital assistants organize inquiries, proposals and follow-up so we can reply in under 24 hours.</span></p><span class="ai-tag"><span class="es on">En uso</span><span class="en">In use</span></span></div></div>
+  <p class="ai-note"><span class="es on">Los asistentes digitales apoyan el trabajo, pero no lo reemplazan: cada entrega es revisada y aprobada por Edgard Bascuñán, Ingeniero Constructor.</span><span class="en">Digital assistants support the work but do not replace it: every delivery is reviewed and approved by Edgard Bascuñán, Construction Engineer.</span></p>
 </section>
 
 <section class="sec ct-bg" id="contacto">
