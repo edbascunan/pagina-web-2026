@@ -1,0 +1,19 @@
+# EBF Servicios
+
+> Oficina técnica en Santiago de Chile: modelado BIM, cubicaciones, APU, presupuestos y apoyo en licitaciones de obras. Atención principal en Chile y atención remota a Latinoamérica. Lema: Precisión BIM antes de construir.
+
+## Servicios
+- [Modelado BIM (LOD 100 a 400)](https://ebf.cl/servicios/modelado-bim.html): modelos en Revit, entrega RVT e IFC, 2 a 3 semanas.
+- [Cubicaciones y presupuestos](https://ebf.cl/servicios/cubicaciones-presupuestos.html): cantidades, APU y presupuesto desde el modelo o planos 2D.
+- [Asesoría en licitaciones](https://ebf.cl/servicios/asesoria-licitaciones.html): estudio de bases, cubicación, APU y carpeta de oferta, 4 a 6 semanas.
+- [BIM para infraestructura](https://ebf.cl/servicios/bim-infraestructura.html): puentes y obras civiles con Revit y Civil 3D.
+- [Coordinación BIM](https://ebf.cl/servicios/coordinacion-bim.html): detección de interferencias e informes por planta.
+- [Oficina técnica](https://ebf.cl/servicios/oficina-tecnica.html): presupuesto objetivo, subcontratos, estados de pago y control de costos.
+
+## Cómo trabajamos
+Tres revisiones por entrega (levantamiento de observaciones, resolución y afinado final), 5 días hábiles cada una o el plazo que se pacte, NDA con copia para ambas partes, comentarios con visores BCF y archivos en Google Drive.
+
+## Más información
+- [Latinoamérica y terminología por país](https://ebf.cl/latam.html)
+- [Blog](https://ebf.cl/blog/)
+- [Inicio y contacto](https://ebf.cl/)
