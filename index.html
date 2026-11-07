@@ -464,7 +464,7 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   .lb{padding:.5rem .8rem;font-size:.72rem}
 }
 .hk-bg{background:#B03229;color:#F0EBE3;padding:4.5rem 2rem}.hk-bg h2{font-family:var(--F);font-size:clamp(2.4rem,6vw,4.2rem);line-height:.95;letter-spacing:.02em;margin:0;text-transform:uppercase}.hk-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:2.5rem;max-width:1100px}.hk-cols h3{font-family:var(--F);font-size:1.5rem;letter-spacing:.04em;margin:0 0 .4rem;font-weight:400}.hk-cols p{margin:0;font-size:.95rem;line-height:1.6;opacity:.92}
-</style>
+.logo-img{height:2.7rem;width:auto;display:block}.fl .logo-img{height:2.5rem}@media(max-width:480px){.logo-img{height:2.2rem}}</style>
 <script>
 /* Auto-recuperacion de imagenes: si una imagen externa falla, reintenta sin referrer y con cache-buster (2 intentos) */
 document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!=='IMG'||!/postimg\.cc/.test(t.src))return;var n=+(t.getAttribute('data-retry')||0);if(n>=2)return;t.setAttribute('data-retry',n+1);t.referrerPolicy='no-referrer';var b=t.src.split('?')[0];setTimeout(function(){t.src=b+'?r='+Date.now()},700*(n+1))},true);
@@ -478,7 +478,7 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
 <div class="scroll-bar" id="scrollBar"></div>
 
 <nav id="mainNav">
-  <div class="logo" onclick="window.scrollTo(0,0)" role="img" aria-label="EBF Servicios"><svg class="logo-iso" viewBox="0 0 76 86" aria-hidden="true"><rect width="16" height="86" fill="currentColor"/><rect width="76" height="16" fill="currentColor"/><rect y="35" width="56" height="16" fill="#D7263D"/><rect y="70" width="76" height="16" fill="currentColor"/></svg><div class="logo-tx">EBF<span>.</span><sub>SERVICIOS</sub></div></div>
+  <div class="logo" onclick="window.scrollTo(0,0)" role="img" aria-label="EBF Servicios"><img class="logo-img" src="/logo-ebf-oscuro.svg" alt="" width="112" height="64"></div>
   <ul class="nav-links" id="navLinks">
     <li><a onclick="go('servicios');closeMenu()"><span class="esi on">Servicios</span><span class="eni">Services</span></a></li>
     <li><a onclick="go('proceso');closeMenu()"><span class="esi on">Proceso</span><span class="eni">Process</span></a></li>
@@ -877,7 +877,7 @@ document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!==
 </section>
 
 <footer>
-  <div class="fl"><svg class="logo-iso" viewBox="0 0 76 86" aria-hidden="true"><rect width="16" height="86" fill="#F4F4F2"/><rect width="76" height="16" fill="#F4F4F2"/><rect y="35" width="56" height="16" fill="#D7263D"/><rect y="70" width="76" height="16" fill="#F4F4F2"/></svg><span>EBF<span>.</span> SERVICIOS</span></div>
+  <div class="fl"><img class="logo-img" src="/logo-ebf-oscuro.svg" alt="" width="112" height="64"></div>
   <div class="flinks">
     <a onclick="go('servicios')"><span class="esi on">Servicios</span><span class="eni">Services</span></a>
     <a onclick="go('proceso')"><span class="esi on">Proceso</span><span class="eni">Process</span></a>
