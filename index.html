@@ -284,7 +284,7 @@ h2.sh .r{color:var(--R)}
 .pcard-front{background:#fff;display:flex;flex-direction:column}
 .pcard-imgs{position:relative;height:25rem;flex-shrink:0;overflow:hidden}
 .pcard-img{position:absolute;inset:0;transition:opacity .5s}
-.pcard-img img{width:100%;height:100%;object-fit:cover}
+.pcard-img{background:#fff}.pcard-img img{width:100%;height:100%;object-fit:contain}
 .pcard-img.active{opacity:1}.pcard-img.inactive{opacity:0}
 .pcard-nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:1rem;opacity:0;transition:opacity .2s}
 .pcard-front:hover .pcard-nav{opacity:1}
@@ -935,6 +935,10 @@ const PJS=[
   /* CONFIRMAR: alcance y año del proyecto Metro */
   {cat:'Infraestructura',title:'Proyecto Metro',description:'Modelo BIM navegable de un proyecto de infraestructura de transporte.',images:['/img/metro-portada.webp'],a360Link:'https://a360.co/4rkicFp',serviceDescription:'Modelo BIM navegable en Autodesk A360.',services:['Modelado BIM'],client:'Constructora Teyco Ltda - Licitación Metro',date:'2025',location:'Santiago, Chile'},
 ];
+/* Orden: mas recientes primero (estable: a igual fecha se mantiene el orden original) */
+(function(){var M={enero:1,febrero:2,marzo:3,abril:4,mayo:5,junio:6,julio:7,agosto:8,septiembre:9,octubre:10,noviembre:11,diciembre:12};
+function k(d){d=String(d||'').toLowerCase();var y=(d.match(/\d{4}/)||[0])[0]*1,m=0;for(var n in M){if(d.indexOf(n)>-1)m=M[n]}return y*100+m}
+PJS.sort(function(a,b){return k(b.date)-k(a.date)})})();
 
 let LANG='es', CUR_F='all', SEL_SLOT=null, SEL_SLOT_LABEL=null, ACTIVE_PJ=null, ACTIVE_MODE='info';
 const ST={};
