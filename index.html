@@ -481,15 +481,15 @@ footer{background:var(--K2);border-top:1px solid rgba(192,32,30,.1);padding:2.5r
   .pcard-btns{position:static;margin:.2rem 1.1rem 1.2rem;flex-wrap:wrap}
   .tm-grid,.bl-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.9rem;padding-bottom:.8rem;-webkit-overflow-scrolling:touch}
   .tm-grid>*,.bl-grid>*{flex:0 0 84%;scroll-snap-align:center}
-  .mrail{display:block;position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:80}
-  .mrail ul{list-style:none;margin:0;padding:.55rem .35rem;background:rgba(10,10,10,.78);backdrop-filter:blur(6px);border-radius:0 12px 12px 0;border:1px solid #26262a;border-left:0}
+  .mrail{display:block;position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:80}
+  .mrail ul{list-style:none;margin:0;padding:.55rem .35rem;background:rgba(10,10,10,.78);backdrop-filter:blur(6px);border-radius:12px 0 0 12px;border:1px solid #26262a;border-right:0}
   .mrail li{margin:0}
-  .mrail a{display:flex;align-items:center;gap:.6rem;min-height:30px;padding:0 .3rem;color:#F0EBE3;text-decoration:none;font-size:.78rem;letter-spacing:.04em;cursor:pointer}
+  .mrail a{display:flex;flex-direction:row-reverse;justify-content:flex-start;align-items:center;gap:.6rem;min-height:30px;padding:0 .3rem;color:#F0EBE3;text-decoration:none;font-size:.78rem;letter-spacing:.04em;cursor:pointer}
   .mrail a i{width:9px;height:9px;border-radius:50%;background:#6b7280;flex:none;transition:background .2s,transform .2s}
   .mrail a.on i{background:#E04450;transform:scale(1.25)}
   .mrail a span{display:none;white-space:nowrap}
   .mrail.open a span{display:inline}
-  .mrail.open ul{padding-right:.9rem}
+  .mrail.open ul{padding-left:.9rem}
 }
 .hk-bg{background:#B03229;color:#F0EBE3;padding:4.5rem 2rem}.hk-bg h2{font-family:var(--F);font-size:clamp(2.4rem,6vw,4.2rem);line-height:.95;letter-spacing:.02em;margin:0;text-transform:uppercase}.hk-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:2.5rem;max-width:1100px}.hk-cols h3{font-family:var(--F);font-size:1.5rem;letter-spacing:.04em;margin:0 0 .4rem;font-weight:400}.hk-cols p{margin:0;font-size:.95rem;line-height:1.6;opacity:.92}
 .logo-img{height:2.7rem;width:auto;display:block}.fl .logo-img{height:2.5rem}@media(max-width:480px){.logo-img{height:2.2rem}}</style>
